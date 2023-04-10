@@ -2,8 +2,8 @@ import SwiftUI
 
 struct CreeUIView: View {
     @State private var nom = ""
-    @State private var liste = List(nom: "", cartes: [])
-    @Binding var listes: [List]
+    @State private var liste = Liste(nom: "", cartes: [])
+    @Binding var listes: [Liste]
 
     
     var body: some View {
@@ -20,7 +20,7 @@ struct CreeUIView: View {
             Spacer()
 
             Button(action: {
-                listes.append(List(nom: nom, cartes: []))
+                listes.append(Liste(nom: nom, cartes: []))
                 nom = ""
             }) {
                 Text("Créer la liste")
@@ -49,7 +49,7 @@ struct CreeUIView: View {
 
 struct CreeUIView_Previews: PreviewProvider {
     public static var previews: some View {
-         let listes = Binding<[List]>(get: { [] }, set: { _ in })
+         let listes = Binding<[Liste]>(get: { [] }, set: { _ in })
          return CreeUIView(listes: listes)
      }
 }

@@ -11,7 +11,7 @@ struct AjouterUneCarteUIView: View {
     @State private var avant = ""
     @State private var arriere = ""
     @State private var carte: Carte = Carte(devant: "", derriere: "")
-    @Binding var liste: List
+    @Binding var liste: Liste
     
     
     var body: some View {
@@ -61,7 +61,7 @@ struct AjouterUneCarteUIView: View {
 
 struct AjouterUneCarteUIView_Previews: PreviewProvider {
     static var previews: some View {
-        let liste = List(id: UUID(), nom: "Ma liste", cartes: [])
+        let liste = Liste(id: UUID(), nom: "Ma liste", cartes: [])
         return AjouterUneCarteUIView(liste: Binding.constant(liste))
     }
 }
