@@ -1,34 +1,29 @@
 import SwiftUI
 
 struct CreeUIView: View {
-    @State private var titleInput = ""
-    @State private var subtitleInput = ""
+    @State private var nom = ""
+    @State private var liste = List(nom: "", cartes: [])
     @Binding var listes: [List]
+
     
     var body: some View {
         VStack {
-            TextEditor(text: $titleInput)
-                .frame(height: 200)
+            Spacer()
+            TextField("Nom de la liste", text: $nom)
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.blue, lineWidth: 2)
                 )
                 .padding()
-            
-            TextEditor(text: $titleInput)
-                .frame(height: 200)
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.blue, lineWidth: 2)
-                )
-                .padding()
-            
+
+            Spacer()
+
             Button(action: {
-                // action à effectuer lors du clic sur le bouton
+                listes.append(List(nom: nom, cartes: []))
+                nom = ""
             }) {
-                Text("Ajouter la carte")
+                Text("Créer la liste")
                     .fontWeight(.bold)
                     .font(.system(size: 20))
                     .foregroundColor(.white)
@@ -51,9 +46,10 @@ struct CreeUIView: View {
 
 
 
+
 struct CreeUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        let listes = Binding<[List]>(get: { [] }, set: { _ in })
-        return CreeUIView(listes: listes)
-    }
+    public static var previews: some View {
+         let listes = Binding<[List]>(get: { [] }, set: { _ in })
+         return CreeUIView(listes: listes)
+     }
 }

@@ -2,16 +2,62 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selection: Int? = nil
-    @State private var listes: [List] = []
+    @State private var listes: [List] = [
+        List(nom: "Liste 1", cartes: [
+            Carte(devant: "Avant 1-1", derriere: "Derriere 1-1"),
+            Carte(devant: "Avant 1-2", derriere: "Derriere 1-2"),
+            Carte(devant: "Avant 1-3", derriere: "Derriere 1-3")
+        ]),
+        List(nom: "Liste 2", cartes: [
+            Carte(devant: "Avant 2-1", derriere: "Derriere 2-1"),
+            Carte(devant: "Avant 2-2", derriere: "Derriere 2-2"),
+            Carte(devant: "Avant 2-3", derriere: "Derriere 2-3"),
+            Carte(devant: "Avant 2-4", derriere: "Derriere 2-4"),
+            Carte(devant: "Avant 2-5", derriere: "Derriere 2-5")
+        ]),
+        List(nom: "Liste 3", cartes: [
+            Carte(devant: "Avant 3-1", derriere: "Derriere 3-1"),
+            Carte(devant: "Avant 3-2", derriere: "Derriere 3-2")
+        ]),
+        List(nom: "Liste 4", cartes: [
+            Carte(devant: "Avant 4-1", derriere: "Derriere 4-1"),
+            Carte(devant: "Avant 4-2", derriere: "Derriere 4-2"),
+            Carte(devant: "Avant 4-3", derriere: "Derriere 4-3"),
+            Carte(devant: "Avant 4-4", derriere: "Derriere 4-4")
+        ])
+    ]
 
     var body: some View {
         TabView(selection: $selection) {
+            
             NavigationView {
-                Text("Accueil")
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
+                        ForEach(listes) { liste in
+                            NavigationLink(destination: AfficherListe()) {
+                                VStack {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundColor(.white)
+                                        .shadow(radius: 5)
+                                        .overlay(
+                                            VStack {
+                                                Text("\(liste.cartes.count)")
+                                                    .font(.headline)
+                                                    .foregroundColor(.blue)
+                                                Text(liste.nom)
+                                                    .font(.footnote)
+                                                    .foregroundColor(.gray)
+                                            }
+                                        )
+                                }
+                                .frame(width: 150, height: 150)
+                            }
+                        }
+                    }
+                }
+
                 
-                
-                
-                    .navigationBarTitle("Accueil")
+                .navigationBarTitle("Accueil")
             }
             .tabItem {
                 Image(systemName: "house")
