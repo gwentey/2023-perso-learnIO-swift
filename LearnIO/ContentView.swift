@@ -8,54 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selection: Int? = nil
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("Contenu de l'application")
-            }
-            .navigationBarTitle("LearnIO")
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    Spacer()
-                    
-                    Button(action: {
-                    }) {
-                        NavigationLink(destination: CreeUIView().navigationBarBackButtonHidden(true)){
-                            Image("liste")
-                                .resizable()
-                                .frame(width: 40, height:40)
-                        }
-                    }
-                    Spacer()
-                    
-                    Button(action: {
-                    }) {
-                        NavigationLink(destination: CreeUIView()) {
-                            Image("entrainer")
-                                .resizable()
-                                .frame(width: 40, height:40)
-                        }
-                        
-                    }
-                    Spacer()
-                    
-                    Button(action: {
-                    }) {
-                        NavigationLink(destination: CreeUIView()) {
-                            Image("creer")
-                                .resizable()
-                                .frame(width: 40, height:40)
-                        }
-                        
-                        
-                    }
-                    Spacer()
-                    
+        TabView(selection: $selection) {
+            Text("Accueil")
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("Accueil")
                 }
-            }
+                .tag(0)
+            
+            CreeUIView()
+                .tabItem {
+                    Image(systemName: "plus.circle")
+                    Text("Créer")
+                }
+                .tag(1)
         }
+        .navigationBarTitle("LearnIO")
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
+
 
 
 
