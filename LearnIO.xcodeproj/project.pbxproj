@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9241B6F829E46D4900A3807B /* CreeUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241B6F729E46D4900A3807B /* CreeUIView.swift */; };
-		9241B6FA29E4713A00A3807B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241B6F929E4713A00A3807B /* SceneDelegate.swift */; };
+		9241B6FC29E4745B00A3807B /* SentrainerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241B6FB29E4745B00A3807B /* SentrainerUIView.swift */; };
+		9241B6FE29E475F200A3807B /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241B6FD29E475F200A3807B /* List.swift */; };
 		92AB855329E46A2600F2B56C /* LearnIOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB855229E46A2600F2B56C /* LearnIOApp.swift */; };
 		92AB855529E46A2600F2B56C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB855429E46A2600F2B56C /* ContentView.swift */; };
 		92AB855729E46A2900F2B56C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92AB855629E46A2900F2B56C /* Assets.xcassets */; };
@@ -17,7 +18,8 @@
 
 /* Begin PBXFileReference section */
 		9241B6F729E46D4900A3807B /* CreeUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreeUIView.swift; sourceTree = "<group>"; };
-		9241B6F929E4713A00A3807B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		9241B6FB29E4745B00A3807B /* SentrainerUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentrainerUIView.swift; sourceTree = "<group>"; };
+		9241B6FD29E475F200A3807B /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		92AB854F29E46A2600F2B56C /* LearnIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92AB855229E46A2600F2B56C /* LearnIOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnIOApp.swift; sourceTree = "<group>"; };
 		92AB855429E46A2600F2B56C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,10 +57,11 @@
 		92AB855129E46A2600F2B56C /* LearnIO */ = {
 			isa = PBXGroup;
 			children = (
-				9241B6F929E4713A00A3807B /* SceneDelegate.swift */,
 				9241B6F729E46D4900A3807B /* CreeUIView.swift */,
 				92AB855229E46A2600F2B56C /* LearnIOApp.swift */,
 				92AB855429E46A2600F2B56C /* ContentView.swift */,
+				9241B6FB29E4745B00A3807B /* SentrainerUIView.swift */,
+				9241B6FD29E475F200A3807B /* List.swift */,
 				92AB855629E46A2900F2B56C /* Assets.xcassets */,
 				92AB855829E46A2900F2B56C /* Preview Content */,
 			);
@@ -146,7 +149,8 @@
 				92AB855529E46A2600F2B56C /* ContentView.swift in Sources */,
 				9241B6F829E46D4900A3807B /* CreeUIView.swift in Sources */,
 				92AB855329E46A2600F2B56C /* LearnIOApp.swift in Sources */,
-				9241B6FA29E4713A00A3807B /* SceneDelegate.swift in Sources */,
+				9241B6FE29E475F200A3807B /* List.swift in Sources */,
+				9241B6FC29E4745B00A3807B /* SentrainerUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
