@@ -30,7 +30,6 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selection) {
             NavigationView {
-
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
                         ForEach(listes) { liste in
@@ -55,8 +54,9 @@ struct ContentView: View {
                             }
                         }
                     }
+                    .navigationBarTitle("Accueil")
+                    .navigationBarHidden(selection != nil) // cacher la barre de navigation lorsque l'on a cliqué sur une liste
                 }
-                .navigationBarTitle("Accueil")
             }
             .tabItem {
                 Image(systemName: "house")

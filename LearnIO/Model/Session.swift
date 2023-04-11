@@ -1,10 +1,3 @@
-//
-//  Session.swift
-//  LearnIO
-//
-//  Created by Anthony RODRIGUES on 11/04/2023.
-//
-
 import Foundation
 
 enum Etat {
@@ -28,5 +21,6 @@ struct Session: Identifiable {
     var formattedDate: String {
         Session.dateFormatter.string(from: date)
     }
+    
     
 }

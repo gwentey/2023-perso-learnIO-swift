@@ -18,6 +18,8 @@
 		92AB855729E46A2900F2B56C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92AB855629E46A2900F2B56C /* Assets.xcassets */; };
 		92AB855A29E46A2900F2B56C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92AB855929E46A2900F2B56C /* Preview Assets.xcassets */; };
 		92C0BA7F29E5DC0C000D49A6 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0BA7E29E5DC0C000D49A6 /* Session.swift */; };
+		92C0BA8329E5F079000D49A6 /* ReviserUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0BA8229E5F079000D49A6 /* ReviserUneListeView.swift */; };
+		92C0BA8529E5F0E9000D49A6 /* ModifierUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0BA8429E5F0E9000D49A6 /* ModifierUneListeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		92AB855629E46A2900F2B56C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92AB855929E46A2900F2B56C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		92C0BA7E29E5DC0C000D49A6 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		92C0BA8229E5F079000D49A6 /* ReviserUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviserUneListeView.swift; sourceTree = "<group>"; };
+		92C0BA8429E5F0E9000D49A6 /* ModifierUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierUneListeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 			children = (
 				9241B70329E4838D00A3807B /* AfficherUneListeView.swift */,
 				9241B6F729E46D4900A3807B /* CreeUneListeView.swift */,
+				92C0BA8229E5F079000D49A6 /* ReviserUneListeView.swift */,
+				92C0BA8429E5F0E9000D49A6 /* ModifierUneListeView.swift */,
 			);
 			path = Liste;
 			sourceTree = "<group>";
@@ -185,7 +191,9 @@
 				92AB855529E46A2600F2B56C /* ContentView.swift in Sources */,
 				9241B70029E47EA800A3807B /* Carte.swift in Sources */,
 				9241B6F829E46D4900A3807B /* CreeUneListeView.swift in Sources */,
+				92C0BA8529E5F0E9000D49A6 /* ModifierUneListeView.swift in Sources */,
 				92AB855329E46A2600F2B56C /* LearnIOApp.swift in Sources */,
+				92C0BA8329E5F079000D49A6 /* ReviserUneListeView.swift in Sources */,
 				9241B70229E47FC600A3807B /* AjouterUneCarteView.swift in Sources */,
 				9241B6FC29E4745B00A3807B /* SentrainerUIView.swift in Sources */,
 				9241B70429E4838D00A3807B /* AfficherUneListeView.swift in Sources */,
