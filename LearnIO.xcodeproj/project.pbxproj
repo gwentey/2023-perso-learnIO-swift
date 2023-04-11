@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9241B6F829E46D4900A3807B /* CreeUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241B6F729E46D4900A3807B /* CreeUIView.swift */; };
+		9241B6F829E46D4900A3807B /* CreeUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241B6F729E46D4900A3807B /* CreeUneListeView.swift */; };
 		9241B6FC29E4745B00A3807B /* SentrainerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241B6FB29E4745B00A3807B /* SentrainerUIView.swift */; };
 		9241B70029E47EA800A3807B /* Carte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241B6FF29E47EA800A3807B /* Carte.swift */; };
-		9241B70229E47FC600A3807B /* AjouterUneCarteUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241B70129E47FC600A3807B /* AjouterUneCarteUIView.swift */; };
-		9241B70429E4838D00A3807B /* AfficherListe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241B70329E4838D00A3807B /* AfficherListe.swift */; };
+		9241B70229E47FC600A3807B /* AjouterUneCarteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241B70129E47FC600A3807B /* AjouterUneCarteView.swift */; };
+		9241B70429E4838D00A3807B /* AfficherUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241B70329E4838D00A3807B /* AfficherUneListeView.swift */; };
 		9241B70629E4851B00A3807B /* Liste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241B70529E4851B00A3807B /* Liste.swift */; };
 		92AB855329E46A2600F2B56C /* LearnIOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB855229E46A2600F2B56C /* LearnIOApp.swift */; };
 		92AB855529E46A2600F2B56C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AB855429E46A2600F2B56C /* ContentView.swift */; };
@@ -20,11 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9241B6F729E46D4900A3807B /* CreeUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreeUIView.swift; sourceTree = "<group>"; };
+		9241B6F729E46D4900A3807B /* CreeUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreeUneListeView.swift; sourceTree = "<group>"; };
 		9241B6FB29E4745B00A3807B /* SentrainerUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentrainerUIView.swift; sourceTree = "<group>"; };
 		9241B6FF29E47EA800A3807B /* Carte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carte.swift; sourceTree = "<group>"; };
-		9241B70129E47FC600A3807B /* AjouterUneCarteUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouterUneCarteUIView.swift; sourceTree = "<group>"; };
-		9241B70329E4838D00A3807B /* AfficherListe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfficherListe.swift; sourceTree = "<group>"; };
+		9241B70129E47FC600A3807B /* AjouterUneCarteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouterUneCarteView.swift; sourceTree = "<group>"; };
+		9241B70329E4838D00A3807B /* AfficherUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfficherUneListeView.swift; sourceTree = "<group>"; };
 		9241B70529E4851B00A3807B /* Liste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liste.swift; sourceTree = "<group>"; };
 		92AB854F29E46A2600F2B56C /* LearnIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92AB855229E46A2600F2B56C /* LearnIOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnIOApp.swift; sourceTree = "<group>"; };
@@ -72,13 +72,12 @@
 		92AB855129E46A2600F2B56C /* LearnIO */ = {
 			isa = PBXGroup;
 			children = (
+				92C0BA7D29E5DA96000D49A6 /* Liste */,
+				92C0BA7C29E5D9EA000D49A6 /* Carte */,
 				9241B70729E485D900A3807B /* Model */,
-				9241B6F729E46D4900A3807B /* CreeUIView.swift */,
 				92AB855229E46A2600F2B56C /* LearnIOApp.swift */,
 				92AB855429E46A2600F2B56C /* ContentView.swift */,
 				9241B6FB29E4745B00A3807B /* SentrainerUIView.swift */,
-				9241B70129E47FC600A3807B /* AjouterUneCarteUIView.swift */,
-				9241B70329E4838D00A3807B /* AfficherListe.swift */,
 				92AB855629E46A2900F2B56C /* Assets.xcassets */,
 				92AB855829E46A2900F2B56C /* Preview Content */,
 			);
@@ -91,6 +90,23 @@
 				92AB855929E46A2900F2B56C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		92C0BA7C29E5D9EA000D49A6 /* Carte */ = {
+			isa = PBXGroup;
+			children = (
+				9241B70129E47FC600A3807B /* AjouterUneCarteView.swift */,
+			);
+			path = Carte;
+			sourceTree = "<group>";
+		};
+		92C0BA7D29E5DA96000D49A6 /* Liste */ = {
+			isa = PBXGroup;
+			children = (
+				9241B70329E4838D00A3807B /* AfficherUneListeView.swift */,
+				9241B6F729E46D4900A3807B /* CreeUneListeView.swift */,
+			);
+			path = Liste;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,11 +181,11 @@
 			files = (
 				92AB855529E46A2600F2B56C /* ContentView.swift in Sources */,
 				9241B70029E47EA800A3807B /* Carte.swift in Sources */,
-				9241B6F829E46D4900A3807B /* CreeUIView.swift in Sources */,
+				9241B6F829E46D4900A3807B /* CreeUneListeView.swift in Sources */,
 				92AB855329E46A2600F2B56C /* LearnIOApp.swift in Sources */,
-				9241B70229E47FC600A3807B /* AjouterUneCarteUIView.swift in Sources */,
+				9241B70229E47FC600A3807B /* AjouterUneCarteView.swift in Sources */,
 				9241B6FC29E4745B00A3807B /* SentrainerUIView.swift in Sources */,
-				9241B70429E4838D00A3807B /* AfficherListe.swift in Sources */,
+				9241B70429E4838D00A3807B /* AfficherUneListeView.swift in Sources */,
 				9241B70629E4851B00A3807B /* Liste.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

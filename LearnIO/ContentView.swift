@@ -30,10 +30,11 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selection) {
             NavigationView {
+
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
                         ForEach(listes) { liste in
-                            NavigationLink(destination: AfficherListe(liste: Binding.constant(liste))) {
+                            NavigationLink(destination: AfficherUneListe(liste: Binding.constant(liste))) {
                                 VStack {
                                     RoundedRectangle(cornerRadius: 10)
                                         .foregroundColor(.white)
@@ -49,6 +50,7 @@ struct ContentView: View {
                                             }
                                         )
                                 }
+                                
                                 .frame(width: 150, height: 150)
                             }
                         }
@@ -73,7 +75,7 @@ struct ContentView: View {
             .tag(1)
             
             NavigationView {
-                CreeUIView(listes: $listes)
+                CreeUneListeView(listes: $listes)
                     .navigationBarTitle("Crée")
             }
             .tabItem {

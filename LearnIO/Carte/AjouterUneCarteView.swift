@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AjouterUneCarteUIView: View {
+struct AjouterUneCarteView: View {
     @State private var avant = ""
     @State private var arriere = ""
     @State private var carte: Carte = Carte(devant: "", derriere: "")
@@ -59,9 +59,9 @@ struct AjouterUneCarteUIView: View {
     }
 }
 
-struct AjouterUneCarteUIView_Previews: PreviewProvider {
+struct AjouterUneCarteView_Previews: PreviewProvider {
     static var previews: some View {
         let liste = Liste(id: UUID(), nom: "Ma liste", cartes: [])
-        return AjouterUneCarteUIView(liste: Binding.constant(liste))
+        return AjouterUneCarteView(liste: Binding.constant(liste))
     }
 }

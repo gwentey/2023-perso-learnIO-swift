@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CreeUIView: View {
+struct CreeUneListeView: View {
     @State private var nom = ""
     @State private var liste = Liste(nom: "", cartes: [])
     @Binding var listes: [Liste]
@@ -47,9 +47,9 @@ struct CreeUIView: View {
 
 
 
-struct CreeUIView_Previews: PreviewProvider {
+struct CreeUneListeView_Previews: PreviewProvider {
     public static var previews: some View {
          let listes = Binding<[Liste]>(get: { [] }, set: { _ in })
-         return CreeUIView(listes: listes)
+         return CreeUneListeView(listes: listes)
      }
 }
