@@ -2,6 +2,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selection: Int? = nil
+    @State private var showNavigationBar = false // Etat pour suivre l'état de la navigation bar
+
     @State private var listes: [Liste] = [
         Liste(nom: "Liste 1", cartes: [
             Carte(devant: "Avant 1-1", derriere: "Derriere 1-1"),
@@ -28,12 +30,13 @@ struct ContentView: View {
     ]
     
     var body: some View {
+        
         TabView(selection: $selection) {
             NavigationView {
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
                         ForEach(listes) { liste in
-                            NavigationLink(destination: AfficherUneListe(liste: Binding.constant(liste))) {
+                            NavigationLink(destination: AfficherUneListe(liste: Binding.constant(liste), showNavigationBar: $showNavigationBar)) {
                                 VStack {
                                     RoundedRectangle(cornerRadius: 10)
                                         .foregroundColor(.white)
@@ -49,20 +52,30 @@ struct ContentView: View {
                                             }
                                         )
                                 }
-                                
                                 .frame(width: 150, height: 150)
+                                
                             }
+                            
+                            
                         }
                     }
                     .navigationBarTitle("Accueil")
-                    .navigationBarHidden(selection != nil) // cacher la barre de navigation lorsque l'on a cliqué sur une liste
+                    .onAppear {
+                        withAnimation {
+                            showNavigationBar = true
+                        }
+                    }
                 }
             }
+
+
             .tabItem {
                 Image(systemName: "house")
                 Text("Accueil")
             }
             .tag(0)
+            
+            
             
             NavigationView {
                 SentrainerUIView()
@@ -85,9 +98,10 @@ struct ContentView: View {
             .tag(2)
         }
         .navigationBarTitle("LearnIO")
-        .navigationViewStyle(StackNavigationViewStyle())
+        
     }
 }
+
 
 
 

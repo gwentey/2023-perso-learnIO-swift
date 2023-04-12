@@ -16,7 +16,6 @@ struct Carte: Identifiable {
     var devant: String
     var derriere: String
     var session: [Session] = []
-    var dateProchaineRevision = Date()
     var dateDernierMalus = Date()
     var niveau: Niveau {
         get {
@@ -77,11 +76,68 @@ struct Carte: Identifiable {
     init(devant: String, derriere: String) {
         self.devant = devant
         self.derriere = derriere
-        self.dateProchaineRevision = Date()
         self.dateDernierMalus = Date()
         self.score = 0
     }
     
+}
+
+
+extension Carte {
+    // Date à laquelle la carte doit être révisée
+    var dateProchaineRevision: Date {
+        let frequence: Int
+        switch niveau {
+        case .A:
+            frequence = 7
+        case .B:
+            frequence = 6
+        case .C:
+            frequence = 5
+        case .D:
+            frequence = 4
+        case .E:
+            frequence = 3
+        case .F:
+            frequence = 2
+        case .G:
+            frequence = 1
+        }
+        let date = Calendar.current.date(byAdding: .day, value: frequence, to: Date())!
+        return date
+    }
+    
+    // Temps de retard
+    var tempsDeRetard: TimeInterval {
+        let temps = dateProchaineRevision.timeIntervalSince(Date())
+        return max(0, temps)
+    }
+    
+    // Temps entre dernier malus et aujourd'hui
+    var tempsEntreDernierMalusEtAujourdhui: TimeInterval {
+        let temps = Date().timeIntervalSince(dateDernierMalus)
+        return temps
+    }
+    
+    // Recalculer le score d'une carte
+    mutating func recalculerScore() {
+        let tempsDeRetard = self.tempsDeRetard
+        if tempsDeRetard == 0 {
+            return
+        }
+        if tempsDeRetard < 0 {
+            let tempsEntreDernierMalusEtAujourdhui = self.tempsEntreDernierMalusEtAujourdhui
+            if tempsEntreDernierMalusEtAujourdhui < 0 {
+                let pointsASuspendre = Int(abs(tempsEntreDernierMalusEtAujourdhui) / 86400) // 1 jour = 86400 secondes
+                score = max(0, score - pointsASuspendre)
+            }
+        }
+    }
+    
+    // Vérifier si la carte doit être révisée
+    func doitEtreRevisee() -> Bool {
+        return tempsDeRetard <= 0 || score <= 3
+    }
 }
 
 

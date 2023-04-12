@@ -10,13 +10,26 @@ import SwiftUI
 struct AfficherUneListe: View {
 
     @Binding var liste : Liste
+    @Binding var showNavigationBar: Bool 
+
     
     var body: some View {
         VStack {
-            Spacer()
-            
+            // Contenu de la vue
         }
-        .navigationBarTitle(liste.nom)
+        .toolbar(showNavigationBar ? .visible : .hidden, for: .tabBar)
+        .onAppear {
+            withAnimation {
+                showNavigationBar = false
+            }
+
+        }
+
+
+        .navigationTitle(liste.nom)
+        
+        
+
     }
 }
 
@@ -27,6 +40,11 @@ struct AfficherUneListe_Previews: PreviewProvider {
             Carte(devant: "Avant 1-2", derriere: "Derriere 1-2"),
             Carte(devant: "Avant 1-3", derriere: "Derriere 1-3")
         ])
-        AfficherUneListe(liste: Binding.constant(liste))
+        return NavigationView {
+            AfficherUneListe(liste: Binding.constant(liste), showNavigationBar: Binding.constant(false))
+        }
     }
 }
+
+
+
