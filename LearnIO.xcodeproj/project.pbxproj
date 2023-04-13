@@ -20,6 +20,7 @@
 		92C0BA7F29E5DC0C000D49A6 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0BA7E29E5DC0C000D49A6 /* Session.swift */; };
 		92C0BA8329E5F079000D49A6 /* ReviserUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0BA8229E5F079000D49A6 /* ReviserUneListeView.swift */; };
 		92C0BA8529E5F0E9000D49A6 /* ModifierUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0BA8429E5F0E9000D49A6 /* ModifierUneListeView.swift */; };
+		92CC272A29E71E7000423C5C /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CC272929E71E7000423C5C /* Tools.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		92C0BA7E29E5DC0C000D49A6 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		92C0BA8229E5F079000D49A6 /* ReviserUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviserUneListeView.swift; sourceTree = "<group>"; };
 		92C0BA8429E5F0E9000D49A6 /* ModifierUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierUneListeView.swift; sourceTree = "<group>"; };
+		92CC272929E71E7000423C5C /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Tools.swift; path = ../../../../../Downloads/Tools.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +81,12 @@
 		92AB855129E46A2600F2B56C /* LearnIO */ = {
 			isa = PBXGroup;
 			children = (
+				92CC272829E71E6500423C5C /* Tools */,
 				92C0BA7D29E5DA96000D49A6 /* Liste */,
 				92C0BA7C29E5D9EA000D49A6 /* Carte */,
 				9241B70729E485D900A3807B /* Model */,
 				92AB855229E46A2600F2B56C /* LearnIOApp.swift */,
 				92AB855429E46A2600F2B56C /* ContentView.swift */,
-				9241B6FB29E4745B00A3807B /* SentrainerUIView.swift */,
 				92AB855629E46A2900F2B56C /* Assets.xcassets */,
 				92AB855829E46A2900F2B56C /* Preview Content */,
 			);
@@ -110,12 +112,21 @@
 		92C0BA7D29E5DA96000D49A6 /* Liste */ = {
 			isa = PBXGroup;
 			children = (
+				9241B6FB29E4745B00A3807B /* SentrainerUIView.swift */,
 				9241B70329E4838D00A3807B /* AfficherUneListeView.swift */,
 				9241B6F729E46D4900A3807B /* CreeUneListeView.swift */,
 				92C0BA8229E5F079000D49A6 /* ReviserUneListeView.swift */,
 				92C0BA8429E5F0E9000D49A6 /* ModifierUneListeView.swift */,
 			);
 			path = Liste;
+			sourceTree = "<group>";
+		};
+		92CC272829E71E6500423C5C /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				92CC272929E71E7000423C5C /* Tools.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +202,7 @@
 				92AB855529E46A2600F2B56C /* ContentView.swift in Sources */,
 				9241B70029E47EA800A3807B /* Carte.swift in Sources */,
 				9241B6F829E46D4900A3807B /* CreeUneListeView.swift in Sources */,
+				92CC272A29E71E7000423C5C /* Tools.swift in Sources */,
 				92C0BA8529E5F0E9000D49A6 /* ModifierUneListeView.swift in Sources */,
 				92AB855329E46A2600F2B56C /* LearnIOApp.swift in Sources */,
 				92C0BA8329E5F079000D49A6 /* ReviserUneListeView.swift in Sources */,

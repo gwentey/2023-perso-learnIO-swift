@@ -57,6 +57,17 @@ struct Carte: Identifiable {
             }
         }
     }
+    
+    private var _dateProchaineRevision: Date
+    
+    var dateProchaineRevision: Date {
+        get {
+            return _dateProchaineRevision
+        }
+        set {
+            _dateProchaineRevision = newValue
+        }
+    }
         
     private static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -73,10 +84,12 @@ struct Carte: Identifiable {
         Carte.dateFormatter.string(from: dateDernierMalus)
     }
     
-    init(devant: String, derriere: String) {
+    init(devant: String, derriere: String, dateProchaineRevision: Date) {
         self.devant = devant
         self.derriere = derriere
         self.dateDernierMalus = Date()
+        self._dateProchaineRevision = dateProchaineRevision
+
         self.score = 0
     }
     
@@ -84,28 +97,6 @@ struct Carte: Identifiable {
 
 
 extension Carte {
-    // Date à laquelle la carte doit être révisée
-    var dateProchaineRevision: Date {
-        let frequence: Int
-        switch niveau {
-        case .A:
-            frequence = 7
-        case .B:
-            frequence = 6
-        case .C:
-            frequence = 5
-        case .D:
-            frequence = 4
-        case .E:
-            frequence = 3
-        case .F:
-            frequence = 2
-        case .G:
-            frequence = 1
-        }
-        let date = Calendar.current.date(byAdding: .day, value: frequence, to: Date())!
-        return date
-    }
     
     // Temps de retard
     var tempsDeRetard: TimeInterval {

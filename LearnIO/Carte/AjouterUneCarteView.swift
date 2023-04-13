@@ -10,7 +10,7 @@ import SwiftUI
 struct AjouterUneCarteView: View {
     @State private var avant = ""
     @State private var arriere = ""
-    @State private var carte: Carte = Carte(devant: "", derriere: "")
+
     @Binding var liste: Liste
     
     
@@ -35,7 +35,7 @@ struct AjouterUneCarteView: View {
                 .padding()
             
             Button(action: {
-                liste.cartes.append(Carte(devant: avant, derriere: arriere))
+                liste.cartes.append(Carte(devant: avant, derriere: arriere, dateProchaineRevision: Date()))
                 avant = ""
                 arriere = ""
             }) {
