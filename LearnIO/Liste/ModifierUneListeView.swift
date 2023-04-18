@@ -8,15 +8,44 @@
 import SwiftUI
 
 struct ModifierUneListeView: View {
+    
     @Binding var liste : Liste
     
     var body: some View {
         VStack {
             Spacer()
-            
+            TextField("Nom de la liste", text: $liste.nom)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.blue, lineWidth: 2)
+                )
+                .padding()
+
+            Spacer()
+
+            Button(action: {
+
+            }) {
+                Text("Modifier la liste")
+                    .fontWeight(.bold)
+                    .font(.system(size: 20))
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.blue, lineWidth: 2)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.blue)
+                            )
+                    )
+            }
+            Spacer()
         }
-        .navigationBarTitle(liste.nom)
+        .navigationBarTitle("Modifier : " + liste.nom)
     }
+
 }
 
 struct ModifierUneListeView_Previews: PreviewProvider {

@@ -1,6 +1,6 @@
 import Foundation
 
-struct Liste: Identifiable {
+struct Liste: Identifiable  {
     
     var id = UUID()
     var nom: String

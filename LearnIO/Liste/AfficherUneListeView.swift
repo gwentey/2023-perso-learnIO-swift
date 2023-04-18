@@ -12,7 +12,6 @@ struct AfficherUneListe: View {
     @Binding var liste : Liste
     @Binding var showNavigationBar: Bool
     
-    
     var body: some View {
         
         Spacer()
@@ -20,8 +19,8 @@ struct AfficherUneListe: View {
             .font(.headline)
         ScrollView {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 5) {
-                ForEach(liste.cartes) { carte in
-                    NavigationLink(destination: AfficherUneListe(liste: Binding.constant(liste), showNavigationBar: $showNavigationBar)) {
+                ForEach($liste.cartes) { $c in
+                    NavigationLink(destination: ModifierUneCarte(carte: $c)) {
                         VStack {
                             RoundedRectangle(cornerRadius: 10)
                                 .foregroundColor(.white)
@@ -29,10 +28,10 @@ struct AfficherUneListe: View {
                                 .padding(5) // Ajouter un padding supplémentaire
                                 .overlay(
                                     VStack {
-                                        Text(carte.devant)
+                                        Text(c.devant)
                                             .font(.system(size: 14))
                                         Divider()
-                                        Text(carte.derriere)
+                                        Text(c.derriere)
                                             .font(.system(size: 14))
                                     }
                                 )
@@ -43,19 +42,22 @@ struct AfficherUneListe: View {
             }
         }
         .navigationBarItems(trailing: HStack {
-                   Button(action: {
-                       // Code pour le premier bouton
-                   }) {
-                       Image(systemName: "play")
-                   }
-                   
-                   Button(action: {
-                       // Code pour le deuxième bouton
-                   }) {
-                       Image(systemName: "trash")
-                   }
-               })
-               .navigationTitle(liste.nom)
+            Button(action: {
+                // Code pour le premier bouton
+            }) {
+                Image(systemName: "play")
+            }
+            NavigationLink(destination: ModifierUneListeView(liste: $liste)) {
+                Image(systemName: "gear")
+            }
+            
+            Button(action: {
+                // Code pour le deuxième bouton
+            }) {
+                Image(systemName: "trash")
+            }
+        })
+        .navigationTitle(liste.nom)
     }
 }
 

@@ -4,7 +4,7 @@ struct ContentView: View {
     @State private var selection: Int? = nil
     @State private var showNavigationBar = false // Etat pour suivre l'état de la navigation bar
     
-    @State private var listes: [Liste] = [
+    @State var listes: [Liste] = [
         Liste(nom: "Liste 1", cartes: [
             Carte(devant: "Avant 1-1", derriere: "Derriere 1-1", dateProchaineRevision: Date()),
             Carte(devant: "Avant 1-2", derriere: "Derriere 1-2", dateProchaineRevision: Calendar.current.date(byAdding: .day, value: 3, to: Date())!),
@@ -27,95 +27,95 @@ struct ContentView: View {
             Carte(devant: "Avant 4-3", derriere: "Derriere 4-3", dateProchaineRevision: Calendar.current.date(byAdding: .day, value: 15, to: Date())!)
         ])
     ]
-              
-              var body: some View {
-                  
-                  TabView(selection: $selection) {
-                      NavigationView {
-                          ScrollView {
-                              LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
-                                  ForEach(listes) { liste in
-                                      NavigationLink(destination: AfficherUneListe(liste: Binding.constant(liste), showNavigationBar: $showNavigationBar)) {
-                                          VStack {
-                                            
-                                              RoundedRectangle(cornerRadius: 10)
-                                                  .foregroundColor(.white)
-                                                  .shadow(radius: 5)
-                                                  .overlay(
-                                                    VStack {
-                                                    Spacer()
-                                                        Text("\(liste.cartes.count)")
-                                                            .font(.headline)
-                                                            .foregroundColor(.blue)
-                                                        Text(liste.nom)
-                                                            .font(.footnote)
-                                                            .foregroundColor(.gray)
-                                                        Spacer()
-                                                        Text(liste.prochaineRevisionDansMoinsDe(99).map { "\($0) jours" } ?? "")
-                                                            .foregroundColor(.red)
-                                                            .font(.system(size: 14))
-                                                        Spacer()
-                                                        
-                                                    }
-                                                  )
-                                          }
-                                          .frame(width: 150, height: 150)
-                                          
-                                      }
-                                      
-                                      
-                                  }
-                              }
-                              .navigationBarTitle("Accueil")
-                              .onAppear {
-                                  withAnimation {
-                                      showNavigationBar = true
-                                  }
-                              }
-                          }
-                      }
-                      
-                      
-                      .tabItem {
-                          Image(systemName: "house")
-                          Text("Accueil")
-                      }
-                      .tag(0)
-                      
-                      
-                      
-                      NavigationView {
-                          SentrainerUIView()
-                              .navigationBarTitle("Créer")
-                      }
-                      .tabItem {
-                          Image(systemName: "play.circle")
-                          Text("S'entrainer")
-                      }
-                      .tag(1)
-                      
-                      NavigationView {
-                          CreeUneListeView(listes: $listes)
-                              .navigationBarTitle("Crée")
-                      }
-                      .tabItem {
-                          Image(systemName: "plus.circle")
-                          Text("Créer")
-                      }
-                      .tag(2)
-                  }
-                  .navigationBarTitle("LearnIO")
-                  
-              }
-              }
-              
-              
-              
-              
-              
-              
-              struct ContentView_Previews: PreviewProvider {
-                  static var previews: some View {
-                      ContentView()
-                  }
-              }
+    
+    var body: some View {
+        
+        TabView(selection: $selection) {
+            NavigationView {
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
+                        ForEach($listes) { $liste in
+                            NavigationLink(destination: AfficherUneListe(liste: $liste, showNavigationBar: $showNavigationBar)) {
+                                VStack {
+                                    
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundColor(.white)
+                                        .shadow(radius: 5)
+                                        .overlay(
+                                            VStack {
+                                                Spacer()
+                                                Text("\(liste.cartes.count)")
+                                                    .font(.headline)
+                                                    .foregroundColor(.blue)
+                                                Text(liste.nom)
+                                                    .font(.footnote)
+                                                    .foregroundColor(.gray)
+                                                Spacer()
+                                                Text(liste.prochaineRevisionDansMoinsDe(99).map { "\($0) jours" } ?? "")
+                                                    .foregroundColor(.red)
+                                                    .font(.system(size: 14))
+                                                Spacer()
+                                                
+                                            }
+                                        )
+                                }
+                                .frame(width: 150, height: 150)
+                                
+                            }
+                            
+                            
+                        }
+                    }
+                    .navigationBarTitle("Accueil")
+                    .onAppear {
+                        withAnimation {
+                            showNavigationBar = true
+                        }
+                    }
+                }
+            }
+            
+            
+            .tabItem {
+                Image(systemName: "house")
+                Text("Accueil")
+            }
+            .tag(0)
+            
+            
+            
+            NavigationView {
+                SentrainerUIView()
+                    .navigationBarTitle("Créer")
+            }
+            .tabItem {
+                Image(systemName: "play.circle")
+                Text("S'entrainer")
+            }
+            .tag(1)
+            
+            NavigationView {
+                CreeUneListeView(listes: $listes)
+                    .navigationBarTitle("Crée")
+            }
+            .tabItem {
+                Image(systemName: "plus.circle")
+                Text("Créer")
+            }
+            .tag(2)
+        }
+        .navigationBarTitle("LearnIO")
+        
+    }
+}
+
+
+
+
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
