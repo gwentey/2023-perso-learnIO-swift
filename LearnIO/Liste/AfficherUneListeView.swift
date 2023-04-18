@@ -9,8 +9,12 @@ import SwiftUI
 
 struct AfficherUneListe: View {
     
-    @Binding var liste : Liste
     @Binding var showNavigationBar: Bool
+    @EnvironmentObject var allListes: AllListes
+    @State var liste : Liste = Liste(nom: "", cartes: [])
+
+    var listeID: UUID? //
+
     
     var body: some View {
         
@@ -58,6 +62,13 @@ struct AfficherUneListe: View {
             }
         })
         .navigationTitle(liste.nom)
+        .environmentObject(allListes)
+        .onAppear {
+            self.showNavigationBar = showNavigationBar
+            for aList in allListes.listes where aList.id == listeID {
+                self.liste = aList
+            }
+        }
     }
 }
 
@@ -70,7 +81,8 @@ struct AfficherUneListe_Previews: PreviewProvider {
             Carte(devant: "Avant 1-3", derriere: "Derriere 1-3", dateProchaineRevision: Date())
         ])
         return NavigationView {
-            AfficherUneListe(liste: Binding.constant(liste), showNavigationBar: Binding.constant(false))
+            AfficherUneListe(showNavigationBar: .constant(true), listeID: liste.id)
+                .environmentObject(AllListes(listes: [liste]))
         }
     }
 }

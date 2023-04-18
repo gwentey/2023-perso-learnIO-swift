@@ -61,7 +61,7 @@ struct AjouterUneCarteView: View {
 
 struct AjouterUneCarteView_Previews: PreviewProvider {
     static var previews: some View {
-        let liste = Liste(id: UUID(), nom: "Ma liste", cartes: [])
+        let liste = Liste(nom: "Ma liste", cartes: [])
         return AjouterUneCarteView(liste: Binding.constant(liste))
     }
 }

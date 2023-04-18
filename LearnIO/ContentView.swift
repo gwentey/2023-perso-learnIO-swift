@@ -4,7 +4,7 @@ struct ContentView: View {
     @State private var selection: Int? = nil
     @State private var showNavigationBar = false // Etat pour suivre l'état de la navigation bar
     
-    @State var listes: [Liste] = [
+    @StateObject var allListes: AllListes = AllListes(listes: [
         Liste(nom: "Liste 1", cartes: [
             Carte(devant: "Avant 1-1", derriere: "Derriere 1-1", dateProchaineRevision: Date()),
             Carte(devant: "Avant 1-2", derriere: "Derriere 1-2", dateProchaineRevision: Calendar.current.date(byAdding: .day, value: 3, to: Date())!),
@@ -26,7 +26,7 @@ struct ContentView: View {
             Carte(devant: "Avant 4-2", derriere: "Derriere 4-2", dateProchaineRevision: Calendar.current.date(byAdding: .day, value: 12, to: Date())!),
             Carte(devant: "Avant 4-3", derriere: "Derriere 4-3", dateProchaineRevision: Calendar.current.date(byAdding: .day, value: 15, to: Date())!)
         ])
-    ]
+    ])
     
     var body: some View {
         
@@ -34,8 +34,10 @@ struct ContentView: View {
             NavigationView {
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
-                        ForEach($listes) { $liste in
-                            NavigationLink(destination: AfficherUneListe(liste: $liste, showNavigationBar: $showNavigationBar)) {
+                       
+                        ForEach($allListes.listes) { $liste in
+                            
+                            NavigationLink(destination: AfficherUneListe(showNavigationBar: $showNavigationBar, listeID: $liste.id).environmentObject(allListes)) {
                                 VStack {
                                     
                                     RoundedRectangle(cornerRadius: 10)
@@ -95,7 +97,7 @@ struct ContentView: View {
             .tag(1)
             
             NavigationView {
-                CreeUneListeView(listes: $listes)
+                CreeUneListeView(listes: $allListes.listes)
                     .navigationBarTitle("Crée")
             }
             .tabItem {

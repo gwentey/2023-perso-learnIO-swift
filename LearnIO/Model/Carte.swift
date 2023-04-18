@@ -10,7 +10,7 @@ enum Niveau {
     case G
 }
 
-struct Carte: Identifiable {
+class Carte: Identifiable {
     
     var id = UUID()
     var devant: String
@@ -20,31 +20,31 @@ struct Carte: Identifiable {
     var niveau: Niveau {
         get {
             switch score {
-                case 0...5:
-                    return .G
-                case 6...12:
-                    return .F
-                case 12...18:
-                    return .E
-                case 18...24:
-                    return .D
-                case 24...30:
-                    return .C
-                case 30...36:
-                    return .B
-                case 37...42:
-                    return .A
-                default:
-                    return .A // Si le score est supérieur à 42, le niveau est A par défaut
+            case 0...5:
+                return .G
+            case 6...12:
+                return .F
+            case 12...18:
+                return .E
+            case 18...24:
+                return .D
+            case 24...30:
+                return .C
+            case 30...36:
+                return .B
+            case 37...42:
+                return .A
+            default:
+                return .A // Si le score est supérieur à 42, le niveau est A par défaut
             }
         }
         set {
             // Ne fait rien, car on ne veut pas que la valeur de niveau soit modifiée directement
         }
     }
-
+    
     private var _score: Int = 0
-
+    
     var score: Int {
         get {
             return _score
@@ -68,7 +68,7 @@ struct Carte: Identifiable {
             _dateProchaineRevision = newValue
         }
     }
-        
+    
     private static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yy"
@@ -89,14 +89,10 @@ struct Carte: Identifiable {
         self.derriere = derriere
         self.dateDernierMalus = Date()
         self._dateProchaineRevision = dateProchaineRevision
-
+        
         self.score = 0
     }
     
-}
-
-
-extension Carte {
     
     // Temps de retard
     var tempsDeRetard: TimeInterval {
@@ -111,7 +107,7 @@ extension Carte {
     }
     
     // Recalculer le score d'une carte
-    mutating func recalculerScore() {
+     func recalculerScore() {
         let tempsDeRetard = self.tempsDeRetard
         if tempsDeRetard == 0 {
             return
@@ -124,11 +120,4 @@ extension Carte {
             }
         }
     }
-    
-    // Vérifier si la carte doit être révisée
-    func doitEtreRevisee() -> Bool {
-        return tempsDeRetard <= 0 || score <= 3
-    }
 }
-
-

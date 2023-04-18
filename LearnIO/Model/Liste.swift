@@ -1,12 +1,16 @@
 import Foundation
 
-struct Liste: Identifiable  {
+class Liste: ObservableObject, Identifiable {
     
     var id = UUID()
-    var nom: String
-    var cartes: [Carte]
+    @Published var nom: String = "";
+    @Published var cartes: [Carte] = []
 
-    
+    init(nom: String, cartes: [Carte]) {
+        self.nom = nom
+        self.cartes = cartes
+    }
+
     
     func compterCartes() -> Int {
         return cartes.count
@@ -41,6 +45,13 @@ struct Liste: Identifiable  {
         
         return prochaineRevisionDansMoinsDeJours
     }
+}
 
+
+class AllListes: ObservableObject {
+    @Published var listes: [Liste] = []
     
+    init(listes: [Liste]) {
+        self.listes = listes
+    }
 }
