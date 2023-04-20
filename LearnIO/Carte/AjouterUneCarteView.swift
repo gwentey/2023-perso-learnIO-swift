@@ -16,7 +16,9 @@ struct AjouterUneCarteView: View {
     
     var body: some View {
         VStack {
+            
             TextEditor(text: $avant)
+                .disableAutocorrection(true)
                 .frame(height: 200)
                 .padding()
                 .background(
@@ -26,6 +28,7 @@ struct AjouterUneCarteView: View {
                 .padding()
             
             TextEditor(text: $arriere)
+                .disableAutocorrection(true)
                 .frame(height: 200)
                 .padding()
                 .background(

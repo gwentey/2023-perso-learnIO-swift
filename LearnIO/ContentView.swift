@@ -6,9 +6,9 @@ struct ContentView: View {
     
     @StateObject var allListes: AllListes = AllListes(listes: [
         Liste(nom: "Liste 1", cartes: [
-            Carte(devant: "Avant 1-1", derriere: "Derriere 1-1", dateProchaineRevision: Date()),
-            Carte(devant: "Avant 1-2", derriere: "Derriere 1-2", dateProchaineRevision: Calendar.current.date(byAdding: .day, value: 3, to: Date())!),
-            Carte(devant: "Avant 1-3", derriere: "Derriere 1-3", dateProchaineRevision: Calendar.current.date(byAdding: .day, value: 5, to: Date())!)
+            Carte(devant: "Hello", derriere: "Bonjour", dateProchaineRevision: Date()),
+            Carte(devant: "Stay", derriere: "Rester", dateProchaineRevision: Calendar.current.date(byAdding: .day, value: 3, to: Date())!),
+            Carte(devant: "Cat", derriere: "Chat", dateProchaineRevision: Calendar.current.date(byAdding: .day, value: 5, to: Date())!)
         ]),
         Liste(nom: "Liste 2", cartes: [
             Carte(devant: "Avant 2-1", derriere: "Derriere 2-1", dateProchaineRevision: Calendar.current.date(byAdding: .day, value: 2, to: Date())!),

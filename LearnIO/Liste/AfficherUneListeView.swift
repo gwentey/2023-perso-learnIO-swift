@@ -1,10 +1,3 @@
-//
-//  AfficherListe.swift
-//  LearnIO
-//
-//  Created by Anthony RODRIGUES on 10/04/2023.
-//
-
 import SwiftUI
 
 struct AfficherUneListe: View {
@@ -12,33 +5,47 @@ struct AfficherUneListe: View {
     @Binding var showNavigationBar: Bool
     @EnvironmentObject var allListes: AllListes
     @State var liste : Liste = Liste(nom: "", cartes: [])
-
-    var listeID: UUID? //
-
+        
+    var listeID: UUID?
+    @State var i : Int = 0
     
     var body: some View {
         
         Spacer()
+        
         Text("Les cartes")
             .font(.headline)
+    
         ScrollView {
+            
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 5) {
-                ForEach($liste.cartes) { $c in
-                    NavigationLink(destination: ModifierUneCarte(carte: $c)) {
+                ForEach(liste.cartes) { c in
+                    NavigationLink(destination: ModifierUneCarte(carted: c).environmentObject(allListes)) {
                         VStack {
+                            Spacer()
+
                             RoundedRectangle(cornerRadius: 10)
                                 .foregroundColor(.white)
                                 .shadow(radius: 3)
                                 .padding(5) // Ajouter un padding supplémentaire
                                 .overlay(
                                     VStack {
+                                        Spacer()
                                         Text(c.devant)
                                             .font(.system(size: 14))
+                                        Spacer()
+
                                         Divider()
+                                        Spacer()
+
                                         Text(c.derriere)
                                             .font(.system(size: 14))
+                                        Spacer()
+
                                     }
                                 )
+                            Spacer()
+
                         }
                         .frame(width: 100, height: 100)
                     }
@@ -51,7 +58,7 @@ struct AfficherUneListe: View {
             }) {
                 Image(systemName: "play")
             }
-            NavigationLink(destination: ModifierUneListeView(liste: $liste)) {
+            NavigationLink(destination: ModifierUneListeView(listeID: self.listeID).environmentObject(allListes)) {
                 Image(systemName: "gear")
             }
             
@@ -69,23 +76,11 @@ struct AfficherUneListe: View {
                 self.liste = aList
             }
         }
+
     }
 }
 
 
-struct AfficherUneListe_Previews: PreviewProvider {
-    static var previews: some View {
-        let liste = Liste(nom: "Liste 1", cartes: [
-            Carte(devant: "Avant 1-1", derriere: "Derriere 1-1", dateProchaineRevision: Date()),
-            Carte(devant: "Avant 1-2", derriere: "Derriere 1-2", dateProchaineRevision: Date()),
-            Carte(devant: "Avant 1-3", derriere: "Derriere 1-3", dateProchaineRevision: Date())
-        ])
-        return NavigationView {
-            AfficherUneListe(showNavigationBar: .constant(true), listeID: liste.id)
-                .environmentObject(AllListes(listes: [liste]))
-        }
-    }
-}
 
 
 

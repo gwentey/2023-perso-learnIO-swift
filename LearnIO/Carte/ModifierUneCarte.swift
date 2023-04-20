@@ -9,22 +9,22 @@ import SwiftUI
 
 struct ModifierUneCarte: View {
     
-    @Binding var carte: Carte
+    @State private var avant: String = ""
+    @State private var arriere: String = ""
     
-    @State private var avant: String
-    @State private var arriere: String
+    @EnvironmentObject var allListes: AllListes
+    @State var carte : Carte = Carte(devant: "", derriere: "", dateProchaineRevision: Date())
     
-    init(carte: Binding<Carte>) {
-        self._carte = carte
-        _avant = State(initialValue: carte.wrappedValue.devant)
-        _arriere = State(initialValue: carte.wrappedValue.derriere)
-    }
+    var carted: Carte
+    
+    
+    
     
     var body: some View {
         
         VStack {
             TextEditor(text: $avant)
-                .frame(height: 200)
+                .frame(height: 100)
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 10)
@@ -33,7 +33,7 @@ struct ModifierUneCarte: View {
                 .padding()
             
             TextEditor(text: $arriere)
-                .frame(height: 200)
+                .frame(height: 100)
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 10)
@@ -42,12 +42,11 @@ struct ModifierUneCarte: View {
                 .padding()
             
             Button(action: {
-
+                
                 carte.devant = avant;
                 carte.derriere = arriere;
-                
-                avant = ""
-                arriere = ""
+                self.allListes.objectWillChange.send()
+
             }) {
                 Text("Modifier la carte")
                     .fontWeight(.bold)
@@ -64,37 +63,18 @@ struct ModifierUneCarte: View {
                     )
             }
             
-            Button(action: {
-
-
-
-            }) {
-                Text("Modifier la carte")
-                    .fontWeight(.bold)
-                    .font(.system(size: 20))
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 2)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.blue)
-                            )
-                    )
-            }
-
             Spacer()
         }
         .navigationTitle("Modifier une carte")
+        .onAppear{
+            self.carte = carted
+            
+            self.avant = self.carte.devant
+            self.arriere = self.carte.derriere
+
+        }
     }
 }
 
 
 
-
-struct ModifierUneCarte_Previews: PreviewProvider {
-static var previews: some View {
-    ModifierUneCarte(carte: .constant(Carte(devant: "Devant", derriere: "Derriere", dateProchaineRevision: Date())))
-}
-}

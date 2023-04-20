@@ -9,8 +9,11 @@ import SwiftUI
 
 struct ModifierUneListeView: View {
     
-    @Binding var liste : Liste
+    @EnvironmentObject var allListes: AllListes
+    @State var liste : Liste = Liste(nom: "", cartes: [])
     
+    var listeID: UUID?
+
     var body: some View {
         VStack {
             Spacer()
@@ -25,6 +28,7 @@ struct ModifierUneListeView: View {
             Spacer()
 
             Button(action: {
+                allListes.objectWillChange.send()
 
             }) {
                 Text("Modifier la liste")
@@ -44,18 +48,13 @@ struct ModifierUneListeView: View {
             Spacer()
         }
         .navigationBarTitle("Modifier : " + liste.nom)
+        
+        .onAppear {
+            for aList in allListes.listes where aList.id == listeID {
+                self.liste = aList
+            }
+        }
     }
 
 }
 
-struct ModifierUneListeView_Previews: PreviewProvider {
-    static var previews: some View {
-        let liste = Liste(nom: "Liste 1", cartes: [
-            Carte(devant: "Avant 1-1", derriere: "Derriere 1-1", dateProchaineRevision: Date()),
-            Carte(devant: "Avant 1-2", derriere: "Derriere 1-2", dateProchaineRevision: Date()),
-            Carte(devant: "Avant 1-3", derriere: "Derriere 1-3", dateProchaineRevision: Date())
-        ])
-        ModifierUneListeView(liste: Binding.constant(liste))
-    }
-
-}

@@ -10,13 +10,13 @@ enum Niveau {
     case G
 }
 
-class Carte: Identifiable {
+class Carte: Identifiable, ObservableObject {
     
     var id = UUID()
-    var devant: String
-    var derriere: String
-    var session: [Session] = []
-    var dateDernierMalus = Date()
+    @Published var devant: String
+    @Published var derriere: String
+    @Published var session: [Session] = []
+    @Published var dateDernierMalus = Date()
     var niveau: Niveau {
         get {
             switch score {
