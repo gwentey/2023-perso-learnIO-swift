@@ -87,7 +87,7 @@ struct AfficherUneListeView: View {
             }
             
             Button(action: {
-                // Code pour le deuxième bouton
+                supprimerUneListe(liste: selectedListe)
             }) {
                 Image(systemName: "trash")
             }
@@ -97,7 +97,31 @@ struct AfficherUneListeView: View {
         .navigationTitle(selectedListe.nom ?? "")
         
     }
+    
+    func supprimerUneListe(liste: Liste) {
+        let alert = UIAlertController(title: "Confirmation", message: "Êtes-vous sûr de vouloir supprimer cette liste ?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Oui", style: .destructive, handler: { _ in
+            viewContext.delete(liste)
+            do {
+                try viewContext.save()
+            } catch {
+                print("Erreur lors de la suppression de la liste : \(error.localizedDescription)")
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Non", style: .cancel, handler: nil))
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let controller = windowScene.windows.first?.rootViewController {
+            controller.present(alert, animated: true, completion: nil)
+        }
+    }
+
+
 }
+
+
 
 struct AfficherUneListeView_Previews: PreviewProvider {
     static var previews: some View {

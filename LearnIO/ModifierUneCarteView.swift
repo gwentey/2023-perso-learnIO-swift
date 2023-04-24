@@ -71,6 +71,7 @@ struct ModifierUneCarteView: View {
                             )
                     )
             }
+            
             Spacer()
         }
         .navigationBarTitle("Modifier une carte")
@@ -80,6 +81,28 @@ struct ModifierUneCarteView: View {
         }
         
     }
+    
+    func supprimerCarte(carte: Carte) {
+        let alert = UIAlertController(title: "Confirmation", message: "Êtes-vous sûr de vouloir supprimer cette carte ?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Oui", style: .destructive, handler: { _ in
+            viewContext.delete(carte)
+            do {
+                try viewContext.save()
+            } catch {
+                print("Erreur lors de la suppression de la carte : \(error.localizedDescription)")
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Non", style: .cancel, handler: nil))
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let controller = windowScene.windows.first?.rootViewController {
+            controller.present(alert, animated: true, completion: nil)
+        }
+    }
+
+    
 }
 
 
