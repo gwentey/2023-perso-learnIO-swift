@@ -15,6 +15,7 @@
 		920D947A29F50F3900A09AD9 /* LearnIO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 920D947829F50F3900A09AD9 /* LearnIO.xcdatamodeld */; };
 		920D948429F50FBE00A09AD9 /* Liste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D948329F50FBE00A09AD9 /* Liste.swift */; };
 		920D948C29F514D000A09AD9 /* AfficherUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D948B29F514D000A09AD9 /* AfficherUneListeView.swift */; };
+		9231B7FC29F6A42600603E37 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9231B7FB29F6A42600603E37 /* SplashScreenView.swift */; };
 		9254614129F517EA0069A04D /* CreerUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9254614029F517EA0069A04D /* CreerUneListeView.swift */; };
 		9254614329F51BEE0069A04D /* Carte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9254614229F51BEE0069A04D /* Carte.swift */; };
 		9254614729F5393B0069A04D /* ModifierUneCarteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9254614629F5393B0069A04D /* ModifierUneCarteView.swift */; };
@@ -33,6 +34,7 @@
 		920D947929F50F3900A09AD9 /* LearnIO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LearnIO.xcdatamodel; sourceTree = "<group>"; };
 		920D948329F50FBE00A09AD9 /* Liste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liste.swift; sourceTree = "<group>"; };
 		920D948B29F514D000A09AD9 /* AfficherUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfficherUneListeView.swift; sourceTree = "<group>"; };
+		9231B7FB29F6A42600603E37 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		9254614029F517EA0069A04D /* CreerUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreerUneListeView.swift; sourceTree = "<group>"; };
 		9254614229F51BEE0069A04D /* Carte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carte.swift; sourceTree = "<group>"; };
 		9254614629F5393B0069A04D /* ModifierUneCarteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierUneCarteView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 		920D946C29F50F3700A09AD9 /* LearnIO */ = {
 			isa = PBXGroup;
 			children = (
+				9231B7FB29F6A42600603E37 /* SplashScreenView.swift */,
 				9254614029F517EA0069A04D /* CreerUneListeView.swift */,
 				9254614829F539EC0069A04D /* ModifierUneListeView.swift */,
 				9254614629F5393B0069A04D /* ModifierUneCarteView.swift */,
@@ -150,11 +153,12 @@
 			};
 			buildConfigurationList = 920D946529F50F3700A09AD9 /* Build configuration list for PBXProject "LearnIO" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = fr;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 920D946129F50F3700A09AD9;
 			productRefGroup = 920D946B29F50F3700A09AD9 /* Products */;
@@ -184,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9254614929F539EC0069A04D /* ModifierUneListeView.swift in Sources */,
+				9231B7FC29F6A42600603E37 /* SplashScreenView.swift in Sources */,
 				920D947729F50F3900A09AD9 /* Persistence.swift in Sources */,
 				9254614729F5393B0069A04D /* ModifierUneCarteView.swift in Sources */,
 				920D947029F50F3700A09AD9 /* ContentView.swift in Sources */,
@@ -326,11 +331,13 @@
 				DEVELOPMENT_TEAM = 35AANAQ9DL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = LearnIO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -355,11 +362,13 @@
 				DEVELOPMENT_TEAM = 35AANAQ9DL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = LearnIO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
