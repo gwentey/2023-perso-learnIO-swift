@@ -1,17 +1,22 @@
 //
-//  AjouterUneCarteUIView.swift
+//  ModifierUneCarteView.swift
 //  LearnIO
 //
-//  Created by Anthony RODRIGUES on 10/04/2023.
+//  Created by Anthony RODRIGUES on 23/04/2023.
 //
 
 import SwiftUI
 
-struct AjouterUneCarteView: View {
-    @State private var avant = ""
-    @State private var arriere = ""
+struct ModifierUneCarteView: View {
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.presentationMode) var presentationMode
 
-    @Binding var liste: Liste
+    
+    @State var avant : String = ""
+    @State var arriere : String = ""
+    
+    @ObservedObject var carte : Carte
     
     
     var body: some View {
@@ -38,11 +43,21 @@ struct AjouterUneCarteView: View {
                 .padding()
             
             Button(action: {
-                liste.cartes.append(Carte(devant: avant, derriere: arriere, dateProchaineRevision: Date()))
-                avant = ""
-                arriere = ""
+                
+                carte.avant = avant
+                carte.arriere = arriere
+                
+                do {
+                    try viewContext.save()
+                    self.presentationMode.wrappedValue.dismiss()
+                    
+                }
+                catch {
+                    // Handle Error
+                }
+                
             }) {
-                Text("Ajouter la carte")
+                Text("Modifier la carte")
                     .fontWeight(.bold)
                     .font(.system(size: 20))
                     .foregroundColor(.white)
@@ -58,13 +73,23 @@ struct AjouterUneCarteView: View {
             }
             Spacer()
         }
-        .navigationBarTitle("Crée")
+        .navigationBarTitle("Modifier une carte")
+        .onAppear {
+            avant = carte.avant!
+            arriere = carte.arriere!
+        }
+        
     }
 }
 
-struct AjouterUneCarteView_Previews: PreviewProvider {
+
+struct ModifierUneCarteView_Previews: PreviewProvider {
     static var previews: some View {
-        let liste = Liste(nom: "Ma liste", cartes: [])
-        return AjouterUneCarteView(liste: Binding.constant(liste))
+        let context = PersistenceController.shared.container.viewContext
+        let carte = Carte(context: context)
+        carte.avant = "Avant"
+        carte.arriere = "Arriere"
+        
+        return ModifierUneCarteView(carte: carte)
     }
 }

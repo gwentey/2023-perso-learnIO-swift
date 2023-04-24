@@ -1,4 +1,5 @@
 import Foundation
+import CoreData
 
 enum Niveau {
     case A
@@ -10,13 +11,45 @@ enum Niveau {
     case G
 }
 
-class Carte: Identifiable, ObservableObject {
+class Carte: NSManagedObject {
     
-    var id = UUID()
-    @Published var devant: String
-    @Published var derriere: String
-    @Published var session: [Session] = []
-    @Published var dateDernierMalus = Date()
+    private var _score: Int = 0
+
+    var score: Int {
+        get {
+            return _score
+        }
+        set {
+            if newValue < 0 {
+                _score = 0
+            } else {
+                _score = newValue
+            }
+        }
+    }
+    
+    private var _dateProchaineRevision: Date = Date()
+
+    var dateProchaineRevision: Date {
+        get {
+            return _dateProchaineRevision
+        }
+        set {
+            _dateProchaineRevision = newValue
+        }
+    }
+    
+    var formattedDate: String {
+        Carte.dateFormatter.string(from: dateProchaineRevision)
+    }
+    
+    var dateDernierMalus = Date()
+
+
+    var formattedDernierMalus: String {
+        Carte.dateFormatter.string(from: dateDernierMalus)
+    }
+    
     var niveau: Niveau {
         get {
             switch score {
@@ -42,57 +75,6 @@ class Carte: Identifiable, ObservableObject {
             // Ne fait rien, car on ne veut pas que la valeur de niveau soit modifiée directement
         }
     }
-    
-    private var _score: Int = 0
-    
-    var score: Int {
-        get {
-            return _score
-        }
-        set {
-            if newValue < 0 {
-                _score = 0
-            } else {
-                _score = newValue
-            }
-        }
-    }
-    
-    private var _dateProchaineRevision: Date
-    
-    var dateProchaineRevision: Date {
-        get {
-            return _dateProchaineRevision
-        }
-        set {
-            _dateProchaineRevision = newValue
-        }
-    }
-    
-    private static var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yy"
-        return formatter
-    }()
-    
-    
-    var formattedDate: String {
-        Carte.dateFormatter.string(from: dateProchaineRevision)
-    }
-    
-    var formattedDernierMalus: String {
-        Carte.dateFormatter.string(from: dateDernierMalus)
-    }
-    
-    init(devant: String, derriere: String, dateProchaineRevision: Date) {
-        self.devant = devant
-        self.derriere = derriere
-        self.dateDernierMalus = Date()
-        self._dateProchaineRevision = dateProchaineRevision
-        
-        self.score = 0
-    }
-    
     
     // Temps de retard
     var tempsDeRetard: TimeInterval {
@@ -120,4 +102,12 @@ class Carte: Identifiable, ObservableObject {
             }
         }
     }
+    
+    
+    private static var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yy"
+        return formatter
+    }()
+    
 }

@@ -1,10 +1,17 @@
+//
+//  CreerUneListeView.swift
+//  LearnIO
+//
+//  Created by Anthony RODRIGUES on 23/04/2023.
+//
+
 import SwiftUI
 
-struct CreeUneListeView: View {
-    @State private var nom = ""
-    @State private var liste = Liste(nom: "", cartes: [])
-    @Binding var listes: [Liste]
+struct CreerUneListeView: View {
+    
+    @Environment(\.managedObjectContext) private var viewContext
 
+    @State private var nom = ""
     
     var body: some View {
         VStack {
@@ -20,8 +27,17 @@ struct CreeUneListeView: View {
             Spacer()
 
             Button(action: {
-                listes.append(Liste(nom: nom, cartes: []))
-                nom = ""
+                let liste = Liste(context: viewContext)
+                liste.nom = self.nom
+                self.nom = ""
+                
+                do {
+                    try viewContext.save()
+                }
+                catch {
+                    // Handle Error
+                }
+                
             }) {
                 Text("Créer la liste")
                     .fontWeight(.bold)
@@ -43,13 +59,8 @@ struct CreeUneListeView: View {
     }
 }
 
-
-
-
-
-struct CreeUneListeView_Previews: PreviewProvider {
-    public static var previews: some View {
-         let listes = Binding<[Liste]>(get: { [] }, set: { _ in })
-         return CreeUneListeView(listes: listes)
-     }
+struct CreerUneListeView_Previews: PreviewProvider {
+    static var previews: some View {
+        CreerUneListeView()
+    }
 }

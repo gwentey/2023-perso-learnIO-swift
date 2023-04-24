@@ -1,4 +1,5 @@
 import Foundation
+import CoreData
 
 enum Etat {
     case Echec
@@ -7,10 +8,10 @@ enum Etat {
     case Facile
 }
 
-struct Session: Identifiable {
-    var id = UUID()
+class Session: NSManagedObject {
+    
     var date = Date()
-    var etat: Etat
+    var etat: Etat = .Echec
     
     private static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()

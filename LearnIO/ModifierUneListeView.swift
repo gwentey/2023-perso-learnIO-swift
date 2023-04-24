@@ -2,34 +2,42 @@
 //  ModifierUneListeView.swift
 //  LearnIO
 //
-//  Created by Anthony RODRIGUES on 11/04/2023.
+//  Created by Anthony RODRIGUES on 23/04/2023.
 //
 
 import SwiftUI
+import CoreData
 
 struct ModifierUneListeView: View {
     
-    @EnvironmentObject var allListes: AllListes
-    @State var liste : Liste = Liste(nom: "", cartes: [])
+    @Environment(\.managedObjectContext) private var viewContext
     
-    var listeID: UUID?
-
+    @ObservedObject var liste: Liste
+    @State var nom: String = ""
+    
     var body: some View {
         VStack {
             Spacer()
-            TextField("Nom de la liste", text: $liste.nom)
+            TextField("Nom de la liste", text: $nom)
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.blue, lineWidth: 2)
                 )
                 .padding()
-
+            
             Spacer()
-
+            
             Button(action: {
-                allListes.objectWillChange.send()
-
+                liste.nom = self.nom
+                
+                do {
+                    try viewContext.save()
+                }
+                catch {
+                    // Handle Error
+                }
+                
             }) {
                 Text("Modifier la liste")
                     .fontWeight(.bold)
@@ -47,14 +55,20 @@ struct ModifierUneListeView: View {
             }
             Spacer()
         }
-        .navigationBarTitle("Modifier : " + liste.nom)
-        
+        .navigationBarTitle("Modifier : " + liste.nom!)
         .onAppear {
-            for aList in allListes.listes where aList.id == listeID {
-                self.liste = aList
-            }
+            self.nom = self.liste.nom!
         }
+        
     }
+}
 
+struct ModifierUneListeView_Previews: PreviewProvider {
+    static var previews: some View {
+        let context = PersistenceController.preview.container.viewContext
+        let liste = Liste(context: context)
+        liste.nom = "Ma liste"
+        return ModifierUneListeView(liste: liste)
+    }
 }
 

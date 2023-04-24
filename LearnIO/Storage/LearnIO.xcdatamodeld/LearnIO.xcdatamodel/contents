@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22E261" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Carte" representedClassName=".Carte" syncable="YES" codeGenerationType="category">
+        <attribute name="arriere" optional="YES" attributeType="String"/>
+        <attribute name="avant" optional="YES" attributeType="String"/>
+        <relationship name="liste" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Liste" inverseName="cartes" inverseEntity="Liste"/>
+        <relationship name="sessions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="carte" inverseEntity="Session"/>
+    </entity>
+    <entity name="Liste" representedClassName=".Liste" syncable="YES" codeGenerationType="category">
+        <attribute name="nom" optional="YES" attributeType="String"/>
+        <relationship name="cartes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Carte" inverseName="liste" inverseEntity="Carte"/>
+    </entity>
+    <entity name="Session" representedClassName=".Session" syncable="YES" codeGenerationType="category">
+        <relationship name="carte" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Carte" inverseName="sessions" inverseEntity="Carte"/>
+    </entity>
+</model>
