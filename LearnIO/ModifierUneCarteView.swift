@@ -74,7 +74,16 @@ struct ModifierUneCarteView: View {
             
             Spacer()
         }
-        .navigationBarTitle("Modifier une carte")
+        .navigationBarItems(trailing: HStack {
+            Button(action: {
+                supprimerUneCarte(carte: carte)
+            }) {
+                Image(systemName: "trash")
+            }
+            
+            
+        })
+        .navigationTitle("Modifier la carte")
         .onAppear {
             avant = carte.avant!
             arriere = carte.arriere!
@@ -82,7 +91,7 @@ struct ModifierUneCarteView: View {
         
     }
     
-    func supprimerCarte(carte: Carte) {
+    func supprimerUneCarte(carte: Carte) {
         let alert = UIAlertController(title: "Confirmation", message: "Êtes-vous sûr de vouloir supprimer cette carte ?", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Oui", style: .destructive, handler: { _ in

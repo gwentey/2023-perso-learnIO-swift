@@ -128,6 +128,7 @@ struct AfficherUneListeView_Previews: PreviewProvider {
         let context = PersistenceController.preview.container.viewContext
         let liste = Liste(context: context)
         liste.nom = "Ma liste de cours"
+        
         let showNavigationBar = Binding.constant(false)
         
         return NavigationView {
