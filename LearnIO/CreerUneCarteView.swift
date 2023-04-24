@@ -17,10 +17,11 @@ struct CreerUneCarteView: View {
 
     var body: some View {
         VStack {
+            Spacer()
             
             TextEditor(text: $avant)
                 .disableAutocorrection(true)
-                .frame(height: 200)
+                .frame(height: 120)
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 10)
@@ -30,7 +31,7 @@ struct CreerUneCarteView: View {
             
             TextEditor(text: $arriere)
                 .disableAutocorrection(true)
-                .frame(height: 200)
+                .frame(height: 120)
                 .padding()
                 .background(
                     RoundedRectangle(cornerRadius: 10)
