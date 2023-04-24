@@ -21,19 +21,21 @@ struct ContentView: View {
     
     
     var body: some View {
-        
         TabView(selection: $selection) {
             NavigationView {
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
-                        
-                        ForEach(listes, id: \.self) { liste in
+                        ForEach(listes.sorted(by: { liste1, liste2 in
+                            guard let jours1 = liste1.prochaineRevisionDansMoinsDe(99),
+                                  let jours2 = liste2.prochaineRevisionDansMoinsDe(99) else {
+                                return false // si l'un des deux n'a pas de prochaine révision, on ne peut pas les comparer
+                            }
+                            return jours1 < jours2 // tri par ordre croissant de la prochaine révision
+                        }), id: \.self) { liste in
                             NavigationLink(destination: AfficherUneListeView(selectedListe : liste, showNavigationBar: $showNavigationBar)
                                 .environment(\.managedObjectContext, viewContext)
                             ) {
-                                
                                 VStack {
-                                    
                                     RoundedRectangle(cornerRadius: 10)
                                         .foregroundColor(.white)
                                         .shadow(radius: 5)
@@ -51,39 +53,29 @@ struct ContentView: View {
                                                     .foregroundColor(.red)
                                                     .font(.system(size: 14))
                                                 Spacer()
-                                                
                                             }
                                         )
                                 }
                                 .frame(width: 150, height: 150)
                             }
                         }
-                        
-                        
                     }
                     .navigationBarTitle("Accueil")
                     .onAppear {
                         withAnimation {
-                            withAnimation {
-                                showNavigationBar = true
-                            }                        }
+                            showNavigationBar = true
+                        }
                     }
                 }
-                
             }
-            
-            
-            
             .tabItem {
                 Image(systemName: "house")
                 Text("Accueil")
             }
             .tag(0)
             
-            
-            
             NavigationView {
-                
+                // ...
             }
             .tabItem {
                 Image(systemName: "play.circle")
@@ -103,8 +95,8 @@ struct ContentView: View {
             .tag(2)
         }
         .navigationBarTitle("LearnIO")
-        
     }
+
 }
 
 

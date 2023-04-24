@@ -17,12 +17,12 @@ struct SplashScreenView: View {
         } else {
             VStack {
                 VStack {
-                    Image(systemName: "hare.fill")
-                        .font(.system(size: 80))
-                        .foregroundColor(.red)
-                    Text("LEARNIO")
-                        .font(Font.custom("Baskerville-Bold", size: 26))
-                        .foregroundColor(.black.opacity(0.80))
+                    Image("LogoEtTexte")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 220, height: 220)
+
+
                 }
                 .scaleEffect(size)
                 .opacity(opacity)
