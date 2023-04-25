@@ -75,9 +75,9 @@ struct AfficherUneListeView: View {
             ) {
                 Image(systemName: "plus")
             }
-            Button(action: {
-                // Code pour le premier bouton
-            }) {
+            NavigationLink(destination: SentrainerView()
+                .environment(\.managedObjectContext, viewContext)
+            ) {
                 Image(systemName: "play")
             }
             NavigationLink(destination: ModifierUneListeView(liste: selectedListe)

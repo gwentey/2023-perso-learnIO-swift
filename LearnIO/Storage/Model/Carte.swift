@@ -2,7 +2,7 @@ import Foundation
 import CoreData
 
 enum Niveau {
-    case A
+    case A 
     case B
     case C
     case D

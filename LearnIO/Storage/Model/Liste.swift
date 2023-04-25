@@ -40,4 +40,21 @@ class Liste: NSManagedObject {
         return prochaineRevisionDansMoinsDeJours
     }
     
+    func cartesAReviserAujourdhuiOuAvant() -> [Carte] {
+        let maintenant = Date()
+        var cartesAReviser = [Carte]()
+        
+        if let cartes = cartes {
+            for carte in cartes {
+                if let carte = carte as? Carte { // Vérifie que la carte est bien une instance de la classe Carte
+                    if carte.dateProchaineRevision <= maintenant {
+                        cartesAReviser.append(carte)
+                    }
+                }
+            }
+        }
+        
+        return cartesAReviser
+    }
+    
 }
