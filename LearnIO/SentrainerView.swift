@@ -9,11 +9,12 @@ import SwiftUI
 
 struct SentrainerView: View {
     
-    // @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext) private var viewContext
     
-    // @ObservedObject var liste: Liste
+    @ObservedObject var liste: Liste
     
     @State private var isFlipped = false
+    @State var prochaineCarteAReviser: Carte?
     
     var body: some View {
         VStack {
@@ -34,19 +35,19 @@ struct SentrainerView: View {
                 
                 VStack {
                     if(!isFlipped) {
-                        Text("Avant")
+                        Text(prochaineCarteAReviser?.avant ?? "")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(.black)
                     } else {
-                        Text("Avant")
+                        Text(prochaineCarteAReviser?.avant ?? "")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(.black)
                         Divider()
                             .frame(maxWidth: .infinity)
                             .padding(.horizontal, 6)
-                        Text("Arriere")
+                        Text(prochaineCarteAReviser?.arriere ?? "")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(.black)
@@ -84,7 +85,9 @@ struct SentrainerView: View {
             } else {
                 Spacer()
                 HStack(spacing: 0) {
-                    Button(action: {}) {
+                    Button(action: {
+                        ajoutDeSessionCarte(carte: prochaineCarteAReviser!, etat: Etat.Echec)
+                    }) {
                         Spacer()
                         Text("Echec")
                             .foregroundColor(.white)
@@ -94,7 +97,10 @@ struct SentrainerView: View {
                     }
                     .background(Color.red)
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        ajoutDeSessionCarte(carte: prochaineCarteAReviser!, etat: Etat.Difficile)
+
+                    }) {
                         Spacer()
                         
                         Text("Difficile")
@@ -106,7 +112,9 @@ struct SentrainerView: View {
                     }
                     .background(Color.orange)
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        ajoutDeSessionCarte(carte: prochaineCarteAReviser!, etat: Etat.Facile)
+                    }) {
                         Spacer()
                         
                         Text("Facile")
@@ -120,7 +128,9 @@ struct SentrainerView: View {
                     
                     
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        ajoutDeSessionCarte(carte: prochaineCarteAReviser!, etat: Etat.Bon)
+                    }) {
                         Spacer()
                         
                         Text("Bon")
@@ -139,12 +149,36 @@ struct SentrainerView: View {
                 .frame(maxHeight: 50)
                 
             }
+        }.onAppear{
+            nouvelleCarteAReviser(liste: liste)
         }
     }
+    
+    func nouvelleCarteAReviser(liste: Liste) {
+        guard let prochaineCarte = liste.cartesAReviserAujourdhuiOuAvant().randomElement() else { return }
+        self.prochaineCarteAReviser = prochaineCarte
+    }
+    
+    func ajoutDeSessionCarte(carte: Carte, etat: Etat) {
+        let session = Session(context: viewContext)
+        
+        session.etat = etat
+        session.date = Date()
+        session.carte = carte
+        carte.determinerDateProchaineRevision()
+        nouvelleCarteAReviser(liste: liste)
+        
+        do {
+            try viewContext.save()
+        }
+        catch {
+            // Handle Error
+        }
+    }
+    
+    
+
 }
 
-struct SentrainerView_Previews: PreviewProvider {
-    static var previews: some View {
-        SentrainerView()
-    }
-}
+
+

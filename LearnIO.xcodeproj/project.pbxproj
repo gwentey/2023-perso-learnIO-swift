@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9203392E29F7DB70009752D7 /* Niveau.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203392D29F7DB70009752D7 /* Niveau.swift */; };
 		920D946E29F50F3700A09AD9 /* LearnIOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D946D29F50F3700A09AD9 /* LearnIOApp.swift */; };
 		920D947029F50F3700A09AD9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D946F29F50F3700A09AD9 /* ContentView.swift */; };
 		920D947229F50F3900A09AD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 920D947129F50F3900A09AD9 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9203392D29F7DB70009752D7 /* Niveau.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Niveau.swift; sourceTree = "<group>"; };
 		920D946A29F50F3700A09AD9 /* LearnIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		920D946D29F50F3700A09AD9 /* LearnIOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnIOApp.swift; sourceTree = "<group>"; };
 		920D946F29F50F3700A09AD9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				920D948329F50FBE00A09AD9 /* Liste.swift */,
 				9254614229F51BEE0069A04D /* Carte.swift */,
 				9259706629F59A8200E84BDE /* Session.swift */,
+				9203392D29F7DB70009752D7 /* Niveau.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9254614929F539EC0069A04D /* ModifierUneListeView.swift in Sources */,
+				9203392E29F7DB70009752D7 /* Niveau.swift in Sources */,
 				9231B7FC29F6A42600603E37 /* SplashScreenView.swift in Sources */,
 				920D947729F50F3900A09AD9 /* Persistence.swift in Sources */,
 				9254614729F5393B0069A04D /* ModifierUneCarteView.swift in Sources */,

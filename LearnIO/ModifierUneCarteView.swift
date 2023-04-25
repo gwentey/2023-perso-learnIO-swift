@@ -17,13 +17,13 @@ struct ModifierUneCarteView: View {
     @State var arriere : String = ""
     
     @ObservedObject var carte : Carte
-    
+
     
     var body: some View {
         VStack {
             Spacer()
             Text("Niveau : " + String(describing: carte.niveau))
-
+            
             TextEditor(text: $avant)
                 .disableAutocorrection(true)
                 .frame(height: 120)

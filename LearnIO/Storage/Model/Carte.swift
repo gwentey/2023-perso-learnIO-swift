@@ -1,16 +1,6 @@
 import Foundation
 import CoreData
 
-enum Niveau {
-    case A 
-    case B
-    case C
-    case D
-    case E
-    case F
-    case G
-}
-
 class Carte: NSManagedObject {
     
     private var _score: Int = 0
@@ -100,6 +90,13 @@ class Carte: NSManagedObject {
                 let pointsASuspendre = Int(abs(tempsEntreDernierMalusEtAujourdhui) / 86400) // 1 jour = 86400 secondes
                 score = max(0, score - pointsASuspendre)
             }
+        }
+    }
+    
+    func determinerDateProchaineRevision() {
+        if let nombreDeJourParNiveau = niveauInfos[niveau]?.nbJour {
+            let seconde = (nombreDeJourParNiveau * 24 * 60 * 60)
+            dateProchaineRevision = Date().addingTimeInterval(TimeInterval(seconde))
         }
     }
     

@@ -75,7 +75,7 @@ struct AfficherUneListeView: View {
             ) {
                 Image(systemName: "plus")
             }
-            NavigationLink(destination: SentrainerView()
+            NavigationLink(destination: SentrainerView(liste: selectedListe)
                 .environment(\.managedObjectContext, viewContext)
             ) {
                 Image(systemName: "play")

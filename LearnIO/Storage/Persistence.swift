@@ -25,7 +25,7 @@ struct PersistenceController {
                 newCarte.arriere = "Arrière \(i) - \(j)"
                 
                 // Définir une date de révision initiale aléatoire entre 1 et 30 jours plus tard
-                let randomInterval = TimeInterval(Int.random(in: 1...30) * 86400) // 1 jour = 86400 secondes
+                let randomInterval = TimeInterval(Int.random(in: -15...10) * 86400) // 1 jour = 86400 secondes
                 newCarte.dateProchaineRevision = Date().addingTimeInterval(randomInterval)
                 
                 newCarte.liste = newListe
