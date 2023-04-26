@@ -95,6 +95,7 @@ class Carte: NSManagedObject {
     
     func determinerDateProchaineRevision() {
         if let nombreDeJourParNiveau = niveauInfos[niveau]?.nbJour {
+            print("Nombre de jour a ajouer à today : " + String(nombreDeJourParNiveau))
             let seconde = (nombreDeJourParNiveau * 24 * 60 * 60)
             dateProchaineRevision = Date().addingTimeInterval(TimeInterval(seconde))
         }

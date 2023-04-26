@@ -28,11 +28,13 @@ class Liste: NSManagedObject {
                     let tempsDeRetard = carte.dateProchaineRevision.timeIntervalSince(maintenant)
                     let joursDeRetard = Int(ceil(tempsDeRetard / (60 * 60 * 24))) // Convertit les secondes en jours en arrondissant à l'entier supérieur
                     
-                    if joursDeRetard <= jours {
+                    
+                    if joursDeRetard <= jours || carte.score <= 3 {
                         if prochaineRevisionDansMoinsDeJours == 0 || joursDeRetard < prochaineRevisionDansMoinsDeJours! {
                             prochaineRevisionDansMoinsDeJours = joursDeRetard
                         }
                     }
+                    
                 }
             }
         }
@@ -44,9 +46,18 @@ class Liste: NSManagedObject {
         let maintenant = Date()
         
         return cartes?.filter {
-            $0 is Carte && ($0 as! Carte).dateProchaineRevision <= maintenant
+            if let carte = $0 as? Carte {
+                return carte.dateProchaineRevision <= maintenant || carte.score <= 3
+            }
+            return false
         } as? [Carte] ?? []
     }
+    
+    func nombreCartesAReviser() -> Int {
+        let cartesAReviser = cartesAReviserAujourdhuiOuAvant()
+        return cartesAReviser.count
+    }
 
+    
     
 }

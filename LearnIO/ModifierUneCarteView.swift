@@ -23,6 +23,9 @@ struct ModifierUneCarteView: View {
         VStack {
             Spacer()
             Text("Niveau : " + String(describing: carte.niveau))
+            Text("Date prochaine revision : " + String(describing: carte.dateProchaineRevision))
+            Text("Score : " + String(describing: carte.score))
+
             
             TextEditor(text: $avant)
                 .disableAutocorrection(true)

@@ -22,11 +22,11 @@ enum Niveau {
 }
 
 let niveauInfos: [Niveau: NiveauInfo] = [
-    .A: NiveauInfo(nbJour: 1),
-    .B: NiveauInfo(nbJour: 3),
-    .C: NiveauInfo(nbJour: 6),
+    .A: NiveauInfo(nbJour: 80),
+    .B: NiveauInfo(nbJour: 40),
+    .C: NiveauInfo(nbJour: 20),
     .D: NiveauInfo(nbJour: 10),
-    .E: NiveauInfo(nbJour: 20),
-    .F: NiveauInfo(nbJour: 40),
-    .G: NiveauInfo(nbJour: 80)
+    .E: NiveauInfo(nbJour: 6),
+    .F: NiveauInfo(nbJour: 3),
+    .G: NiveauInfo(nbJour: 1)
 ]

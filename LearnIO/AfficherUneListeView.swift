@@ -11,6 +11,10 @@ struct AfficherUneListeView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
+    var contientCartesAReviser: Bool {
+        selectedListe.nombreCartesAReviser() > 0
+    }
+    
     @Binding var showNavigationBar: Bool
     @ObservedObject var selectedListe: Liste
     
@@ -80,6 +84,7 @@ struct AfficherUneListeView: View {
             ) {
                 Image(systemName: "play")
             }
+            .disabled(!contientCartesAReviser)
             NavigationLink(destination: ModifierUneListeView(liste: selectedListe)
                 .environment(\.managedObjectContext, viewContext)
             ) {
@@ -117,8 +122,8 @@ struct AfficherUneListeView: View {
             controller.present(alert, animated: true, completion: nil)
         }
     }
-
-
+    
+    
 }
 
 

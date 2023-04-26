@@ -24,6 +24,7 @@
 		9254614929F539EC0069A04D /* ModifierUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9254614829F539EC0069A04D /* ModifierUneListeView.swift */; };
 		9259706529F592C700E84BDE /* CreerUneCarteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9259706429F592C700E84BDE /* CreerUneCarteView.swift */; };
 		9259706729F59A8200E84BDE /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9259706629F59A8200E84BDE /* Session.swift */; };
+		92D0CF7129F837A0001789ED /* Etat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0CF7029F837A0001789ED /* Etat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		9254614829F539EC0069A04D /* ModifierUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierUneListeView.swift; sourceTree = "<group>"; };
 		9259706429F592C700E84BDE /* CreerUneCarteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreerUneCarteView.swift; sourceTree = "<group>"; };
 		9259706629F59A8200E84BDE /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		92D0CF7029F837A0001789ED /* Etat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Etat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				9254614229F51BEE0069A04D /* Carte.swift */,
 				9259706629F59A8200E84BDE /* Session.swift */,
 				9203392D29F7DB70009752D7 /* Niveau.swift */,
+				92D0CF7029F837A0001789ED /* Etat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				9254614929F539EC0069A04D /* ModifierUneListeView.swift in Sources */,
 				9203392E29F7DB70009752D7 /* Niveau.swift in Sources */,
 				9231B7FC29F6A42600603E37 /* SplashScreenView.swift in Sources */,
+				92D0CF7129F837A0001789ED /* Etat.swift in Sources */,
 				920D947729F50F3900A09AD9 /* Persistence.swift in Sources */,
 				9254614729F5393B0069A04D /* ModifierUneCarteView.swift in Sources */,
 				920D947029F50F3700A09AD9 /* ContentView.swift in Sources */,

@@ -10,12 +10,13 @@ import SwiftUI
 struct SentrainerView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @Environment(\.presentationMode) var presentationMode
+
     @ObservedObject var liste: Liste
     
     @State private var isFlipped = false
     @State var prochaineCarteAReviser: Carte?
-    
+
     var body: some View {
         VStack {
             Spacer()
@@ -113,11 +114,11 @@ struct SentrainerView: View {
                     .background(Color.orange)
                     
                     Button(action: {
-                        ajoutDeSessionCarte(carte: prochaineCarteAReviser!, etat: Etat.Facile)
+                        ajoutDeSessionCarte(carte: prochaineCarteAReviser!, etat: Etat.Bon)
                     }) {
                         Spacer()
                         
-                        Text("Facile")
+                        Text("Bon")
                             .foregroundColor(.white)
                             .frame(maxHeight: .infinity)
                             .padding(.vertical)
@@ -129,11 +130,11 @@ struct SentrainerView: View {
                     
                     
                     Button(action: {
-                        ajoutDeSessionCarte(carte: prochaineCarteAReviser!, etat: Etat.Bon)
+                        ajoutDeSessionCarte(carte: prochaineCarteAReviser!, etat: Etat.Facile)
                     }) {
                         Spacer()
                         
-                        Text("Bon")
+                        Text("Facile")
                             .foregroundColor(.white)
                             .frame(maxHeight: .infinity)
                             .padding(.vertical)
@@ -155,8 +156,13 @@ struct SentrainerView: View {
     }
     
     func nouvelleCarteAReviser(liste: Liste) {
-        guard let prochaineCarte = liste.cartesAReviserAujourdhuiOuAvant().randomElement() else { return }
-        self.prochaineCarteAReviser = prochaineCarte
+        if(liste.cartesAReviserAujourdhuiOuAvant().count <= 0) {
+            self.presentationMode.wrappedValue.dismiss()
+        } else {
+            guard let prochaineCarte = liste.cartesAReviserAujourdhuiOuAvant().randomElement() else {
+            return }
+            self.prochaineCarteAReviser = prochaineCarte
+        }
     }
     
     func ajoutDeSessionCarte(carte: Carte, etat: Etat) {
@@ -165,8 +171,16 @@ struct SentrainerView: View {
         session.etat = etat
         session.date = Date()
         session.carte = carte
+
+        // maj du score
+        let points = etatInfos[etat]?.points
+        carte.score = carte.score + (points ?? 0)
+        print("Sentrainer en cours \n")
+        
         carte.determinerDateProchaineRevision()
+        
         nouvelleCarteAReviser(liste: liste)
+        isFlipped.toggle()
         
         do {
             try viewContext.save()

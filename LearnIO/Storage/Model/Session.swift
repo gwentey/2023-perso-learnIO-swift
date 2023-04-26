@@ -1,12 +1,6 @@
 import Foundation
 import CoreData
 
-enum Etat {
-    case Echec
-    case Difficile
-    case Bon
-    case Facile
-}
 
 class Session: NSManagedObject {
     
