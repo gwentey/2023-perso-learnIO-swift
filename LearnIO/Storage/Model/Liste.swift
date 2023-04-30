@@ -20,17 +20,20 @@ class Liste: NSManagedObject {
     
     func prochaineRevisionDansMoinsDe(_ jours: Int) -> Int? {
         let maintenant = Date()
-        var prochaineRevisionDansMoinsDeJours: Int? = 0
+        var prochaineRevisionDansMoinsDeJours: Int? = nil
         
         if let cartes = cartes {
             for carte in cartes {
                 if let carte = carte as? Carte { // Vérifie que la carte est bien une instance de la classe Carte
+                    if carte.score <= 3 {
+                        return 0
+                    }
+                    
                     let tempsDeRetard = carte.dateProchaineRevision.timeIntervalSince(maintenant)
                     let joursDeRetard = Int(ceil(tempsDeRetard / (60 * 60 * 24))) // Convertit les secondes en jours en arrondissant à l'entier supérieur
                     
-                    
-                    if joursDeRetard <= jours || carte.score <= 3 {
-                        if prochaineRevisionDansMoinsDeJours == 0 || joursDeRetard < prochaineRevisionDansMoinsDeJours! {
+                    if joursDeRetard <= jours {
+                        if prochaineRevisionDansMoinsDeJours == nil || joursDeRetard < prochaineRevisionDansMoinsDeJours! {
                             prochaineRevisionDansMoinsDeJours = joursDeRetard
                         }
                     }
@@ -41,6 +44,7 @@ class Liste: NSManagedObject {
         
         return prochaineRevisionDansMoinsDeJours
     }
+
     
     func cartesAReviserAujourdhuiOuAvant() -> [Carte] {
         let maintenant = Date()

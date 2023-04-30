@@ -1,5 +1,6 @@
 import Foundation
 import CoreData
+import AVFoundation
 
 class Carte: NSManagedObject {
     
@@ -98,6 +99,21 @@ class Carte: NSManagedObject {
             print("Nombre de jour a ajouer à today : " + String(nombreDeJourParNiveau))
             let seconde = (nombreDeJourParNiveau * 24 * 60 * 60)
             dateProchaineRevision = Date().addingTimeInterval(TimeInterval(seconde))
+        }
+    }
+    
+    var soundPlayer: AVAudioPlayer?
+    
+    func flipSound() {
+        // Logique pour retourner la carte
+        
+        // Jouer le son
+        let soundURL = Bundle.main.url(forResource: "flipsound", withExtension: "mp3")!
+        do {
+            soundPlayer = try AVAudioPlayer(contentsOf: soundURL)
+            soundPlayer?.play()
+        } catch {
+            print("Erreur lors de la lecture du son: \(error.localizedDescription)")
         }
     }
     

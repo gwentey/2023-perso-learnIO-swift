@@ -64,6 +64,8 @@ struct SentrainerView: View {
                     Button(action: {
                         withAnimation(.spring()) {
                             isFlipped.toggle()
+                            prochaineCarteAReviser!.flipSound()
+
                         }
                     }) {
                         Spacer()
