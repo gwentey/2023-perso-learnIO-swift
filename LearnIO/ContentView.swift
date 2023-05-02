@@ -27,51 +27,96 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selection) {
             NavigationView {
-                ScrollView {
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 20) {
-                        ForEach(listes.sorted(by: { liste1, liste2 in
-                            guard let jours1 = liste1.prochaineRevisionDansMoinsDe(99),
-                                  let jours2 = liste2.prochaineRevisionDansMoinsDe(99) else {
-                                return false // si l'un des deux n'a pas de prochaine révision, on ne peut pas les comparer
-                            }
-                            return jours1 < jours2 // tri par ordre croissant de la prochaine révision
-                        }), id: \.self) { liste in
-                            NavigationLink(destination: AfficherUneListeView(selectedListe : liste, showNavigationBar: $showNavigationBar)
-                                .environment(\.managedObjectContext, viewContext)
-                            ) {
-                                VStack {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .foregroundColor(.white)
-                                        .shadow(radius: 5)
-                                        .overlay(
-                                            VStack {
-                                                Spacer()
-                                                Text("\(liste.compterCartes())")
-                                                    .font(.headline)
-                                                    .foregroundColor(.blue)
-                                                Text(liste.nom ?? "")
-                                                    .font(.footnote)
-                                                    .foregroundColor(.gray)
-                                                Spacer()
-                                                Text(liste.prochaineRevisionDansMoinsDe(99).map { "\($0) jours" } ?? "")
-                                                    .foregroundColor(.red)
-                                                    .font(.system(size: 14))
-                                                Spacer()
-                                            }
-                                        )
+                VStack {
+                    Section(header: Text("Listes à réviser")) {
+                        
+                        ScrollView {
+                            LazyVGrid(columns: [GridItem(.adaptive(minimum: 110))], spacing: 20) {
+                                ForEach(listes.filter { $0.prochaineRevisionDansMoinsDe(99) ?? 0 <= 0 }.sorted(by: { liste1, liste2 in
+                                    guard let jours1 = liste1.prochaineRevisionDansMoinsDe(99),
+                                          let jours2 = liste2.prochaineRevisionDansMoinsDe(99) else {
+                                        return false // si l'un des deux n'a pas de prochaine révision, on ne peut pas les comparer
+                                    }
+                                    return jours1 < jours2 // tri par ordre croissant de la prochaine révision
+                                }), id: \.self) { liste in
+                                    NavigationLink(destination: AfficherUneListeView(selectedListe : liste, showNavigationBar: $showNavigationBar)
+                                        .environment(\.managedObjectContext, viewContext)
+                                    ) {
+                                        VStack {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .foregroundColor(.white)
+                                                .shadow(radius: 5)
+                                                .overlay(
+                                                    VStack {
+                                                        Spacer()
+                                                        Text("\(liste.compterCartes())")
+                                                            .font(.headline)
+                                                            .foregroundColor(.blue)
+                                                        Text(liste.nom ?? "")
+                                                            .font(.footnote)
+                                                            .foregroundColor(.gray)
+                                                        Spacer()
+                                                        Text(liste.prochaineRevisionDansMoinsDe(99).map { "\($0) jours" } ?? "")
+                                                            .foregroundColor(.red)
+                                                            .font(.system(size: 14))
+                                                        Spacer()
+                                                    }
+                                                )
+                                        }
+                                        .frame(width: 110, height: 110)
+                                    }
                                 }
-                                .frame(width: 150, height: 150)
+                            }.padding(10)
+                            .navigationBarTitle("Accueil")
+                            .onAppear {
+                                viewContext.refreshAllObjects()
+                                withAnimation {
+                                    showNavigationBar = true
+                                }
                             }
                         }
                     }
-                    .navigationBarTitle("Accueil")
-                    .onAppear {
-                        viewContext.refreshAllObjects()
-                        withAnimation {
-                            showNavigationBar = true
+                    
+                    // Section des listes apprises
+                    Section(header: Text("Listes apprises")) {
+                        ScrollView {
+                            LazyVGrid(columns: [GridItem(.adaptive(minimum: 110))], spacing: 20) {
+                                ForEach(listes.filter { $0.prochaineRevisionDansMoinsDe(99) == nil }, id: \.self) { liste in
+                                    NavigationLink(destination: AfficherUneListeView(selectedListe: liste, showNavigationBar: $showNavigationBar)
+                                        .environment(\.managedObjectContext, viewContext)
+                                    ) {
+                                        VStack {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .foregroundColor(.white)
+                                                .shadow(radius: 5)
+                                                .overlay(
+                                                    VStack {
+                                                        Spacer()
+                                                        Text("\(liste.compterCartes())")
+                                                            .font(.headline)
+                                                            .foregroundColor(.blue)
+                                                        Text(liste.nom ?? "")
+                                                            .font(.footnote)
+                                                            .foregroundColor(.gray)
+                                                        Spacer()
+                                                        Text("Apprise")
+                                                            .foregroundColor(.green)
+                                                            .font(.system(size: 14))
+                                                        Spacer()
+                                                    }
+                                                )
+                                        }
+                                        .frame(width: 110, height: 110)
+                                    }
+                                }
+                            }
                         }
                     }
+
+                    
                 }
+                    
+                        
             }
             .tabItem {
                 Image(systemName: "house")
