@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SentrainerView: View {
     
@@ -188,7 +189,6 @@ struct SentrainerView: View {
             try viewContext.save()
         }
         catch {
-            // Handle Error
         }
     }
     

@@ -28,10 +28,10 @@ struct AfficherUneListeView: View {
     }
     
     var body: some View {
-        
         Spacer()
         Text("Les cartes")
             .font(.headline)
+        Text(selectedListe.prochaineRevisionDansMoinsDe(99).map { "\($0) jours" } ?? "")
         ScrollView {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 5) {
                 ForEach (cartes) { carte in

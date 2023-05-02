@@ -14,11 +14,15 @@ struct ContentView: View {
     @State private var selection: Int? = nil
     @State private var showNavigationBar = false // Etat pour suivre l'état de la navigation bar
     
+    // Remplacer la variable 'listes' existante par une variable 'fetchRequest'
     @FetchRequest(
         entity: Liste.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Liste.nom, ascending: true)])
-    var listes: FetchedResults<Liste>
+    var fetchRequest: FetchedResults<Liste>
     
+    var listes: [Liste] {
+        fetchRequest.map { $0 }
+    }
     
     var body: some View {
         TabView(selection: $selection) {
@@ -62,6 +66,7 @@ struct ContentView: View {
                     }
                     .navigationBarTitle("Accueil")
                     .onAppear {
+                        viewContext.refreshAllObjects()
                         withAnimation {
                             showNavigationBar = true
                         }
@@ -97,7 +102,10 @@ struct ContentView: View {
         .navigationBarTitle("LearnIO")
     }
 
+    
 }
+
+
 
 
 struct ContentView_Previews: PreviewProvider {
