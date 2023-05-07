@@ -67,13 +67,6 @@ struct ContentView: View {
                                     }
                                 }
                             }.padding(10)
-                            .navigationBarTitle("Accueil")
-                            .onAppear {
-                                viewContext.refreshAllObjects()
-                                withAnimation {
-                                    showNavigationBar = true
-                                }
-                            }
                         }
                     }
                     
@@ -109,14 +102,21 @@ struct ContentView: View {
                                         .frame(width: 110, height: 110)
                                     }
                                 }
-                            }
+                            }.padding(10)
+                            
                         }
                     }
-
                     
-                }
                     
-                        
+                }   .navigationBarTitle("Accueil")
+                    .onAppear {
+                        viewContext.refreshAllObjects()
+                        withAnimation {
+                            showNavigationBar = true
+                        }
+                    }
+                
+                
             }
             .tabItem {
                 Image(systemName: "house")
@@ -146,7 +146,7 @@ struct ContentView: View {
         }
         .navigationBarTitle("LearnIO")
     }
-
+    
     
 }
 

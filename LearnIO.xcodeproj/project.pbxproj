@@ -16,6 +16,7 @@
 		920D947A29F50F3900A09AD9 /* LearnIO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 920D947829F50F3900A09AD9 /* LearnIO.xcdatamodeld */; };
 		920D948429F50FBE00A09AD9 /* Liste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D948329F50FBE00A09AD9 /* Liste.swift */; };
 		920D948C29F514D000A09AD9 /* AfficherUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D948B29F514D000A09AD9 /* AfficherUneListeView.swift */; };
+		9229AF212A079E160017C46A /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 9229AF202A079E160017C46A /* SwiftUICharts */; };
 		9231B7FC29F6A42600603E37 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9231B7FB29F6A42600603E37 /* SplashScreenView.swift */; };
 		9231B80029F6B11F00603E37 /* SentrainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9231B7FF29F6B11F00603E37 /* SentrainerView.swift */; };
 		9254614129F517EA0069A04D /* CreerUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9254614029F517EA0069A04D /* CreerUneListeView.swift */; };
@@ -39,6 +40,9 @@
 		920D947929F50F3900A09AD9 /* LearnIO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LearnIO.xcdatamodel; sourceTree = "<group>"; };
 		920D948329F50FBE00A09AD9 /* Liste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liste.swift; sourceTree = "<group>"; };
 		920D948B29F514D000A09AD9 /* AfficherUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfficherUneListeView.swift; sourceTree = "<group>"; };
+		9229AF1C2A079BAC0017C46A /* XCode.nosync */ = {isa = PBXFileReference; lastKnownFileType = folder; name = XCode.nosync; path = ..; sourceTree = "<group>"; };
+		9229AF1D2A079C790017C46A /* MyLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MyLibrary; path = ../MyLibrary; sourceTree = "<group>"; };
+		9229AF1E2A079C8E0017C46A /* MyLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MyLibrary; path = ../MyLibrary; sourceTree = "<group>"; };
 		9231B7FB29F6A42600603E37 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		9231B7FF29F6B11F00603E37 /* SentrainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentrainerView.swift; sourceTree = "<group>"; };
 		9254614029F517EA0069A04D /* CreerUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreerUneListeView.swift; sourceTree = "<group>"; };
@@ -47,6 +51,7 @@
 		9254614829F539EC0069A04D /* ModifierUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierUneListeView.swift; sourceTree = "<group>"; };
 		9259706429F592C700E84BDE /* CreerUneCarteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreerUneCarteView.swift; sourceTree = "<group>"; };
 		9259706629F59A8200E84BDE /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		925D88B62A079AA3006B6A6B /* MyLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MyLibrary; path = ../MyLibrary; sourceTree = "<group>"; };
 		925F16EA29FEA90B00EF6A66 /* flipsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flipsound.mp3; sourceTree = "<group>"; };
 		92D0CF7029F837A0001789ED /* Etat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Etat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9229AF212A079E160017C46A /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +71,7 @@
 		920D946129F50F3700A09AD9 = {
 			isa = PBXGroup;
 			children = (
+				925D88B52A079AA3006B6A6B /* Packages */,
 				920D946C29F50F3700A09AD9 /* LearnIO */,
 				920D946B29F50F3700A09AD9 /* Products */,
 			);
@@ -128,6 +135,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		925D88B52A079AA3006B6A6B /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				925D88B62A079AA3006B6A6B /* MyLibrary */,
+				9229AF1C2A079BAC0017C46A /* XCode.nosync */,
+				9229AF1D2A079C790017C46A /* MyLibrary */,
+				9229AF1E2A079C8E0017C46A /* MyLibrary */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,6 +162,9 @@
 			dependencies = (
 			);
 			name = LearnIO;
+			packageProductDependencies = (
+				9229AF202A079E160017C46A /* SwiftUICharts */,
+			);
 			productName = LearnIO;
 			productReference = 920D946A29F50F3700A09AD9 /* LearnIO.app */;
 			productType = "com.apple.product-type.application";
@@ -172,6 +193,9 @@
 				fr,
 			);
 			mainGroup = 920D946129F50F3700A09AD9;
+			packageReferences = (
+				9229AF1F2A079E160017C46A /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 920D946B29F50F3700A09AD9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -419,6 +443,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9229AF1F2A079E160017C46A /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = exactVersion;
+				version = "2.0.0-beta.2";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9229AF202A079E160017C46A /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9229AF1F2A079E160017C46A /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		920D947829F50F3900A09AD9 /* LearnIO.xcdatamodeld */ = {
