@@ -14,15 +14,12 @@ class Carte: NSManagedObject {
         }
     }
     
-    
-    private var _dateProchaineRevision: Date = Date()
-    
     var dateProchaineRevision: Date {
         get {
-            return _dateProchaineRevision
+            return dateProchaineRevisionS ?? Date()
         }
         set {
-            _dateProchaineRevision = newValue
+            dateProchaineRevisionS = newValue
         }
     }
     

@@ -32,13 +32,8 @@ struct ContentView: View {
                         
                         ScrollView {
                             LazyVGrid(columns: [GridItem(.adaptive(minimum: 110))], spacing: 20) {
-                                ForEach(listes.filter { $0.prochaineRevisionDansMoinsDe(99) ?? 0 <= 0 }.sorted(by: { liste1, liste2 in
-                                    guard let jours1 = liste1.prochaineRevisionDansMoinsDe(99),
-                                          let jours2 = liste2.prochaineRevisionDansMoinsDe(99) else {
-                                        return false // si l'un des deux n'a pas de prochaine révision, on ne peut pas les comparer
-                                    }
-                                    return jours1 < jours2 // tri par ordre croissant de la prochaine révision
-                                }), id: \.self) { liste in
+                                ForEach(listes.filter { $0.prochaineRevisionDansMoinsDe(99) != nil && ($0.prochaineRevisionDansMoinsDe(99) ?? 0) <= 0 }.sorted(by: { $0.prochaineRevisionDansMoinsDe(99) ?? 0 > $1.prochaineRevisionDansMoinsDe(99) ?? 0 })) { liste in
+
                                     NavigationLink(destination: AfficherUneListeView(selectedListe : liste, showNavigationBar: $showNavigationBar)
                                         .environment(\.managedObjectContext, viewContext)
                                     ) {
@@ -74,7 +69,13 @@ struct ContentView: View {
                     Section(header: Text("Listes apprises")) {
                         ScrollView {
                             LazyVGrid(columns: [GridItem(.adaptive(minimum: 110))], spacing: 20) {
-                                ForEach(listes.filter { $0.prochaineRevisionDansMoinsDe(99) == nil }, id: \.self) { liste in
+                                ForEach(listes.filter { $0.prochaineRevisionDansMoinsDe(99) ?? 100 > 0 }.sorted(by: { liste1, liste2 in
+                                    guard let jours1 = liste1.prochaineRevisionDansMoinsDe(99),
+                                          let jours2 = liste2.prochaineRevisionDansMoinsDe(99) else {
+                                        return false // si l'un des deux n'a pas de prochaine révision, on ne peut pas les comparer
+                                    }
+                                    return jours1 < jours2 // tri par ordre croissant de la prochaine révision
+                                }), id: \.self) { liste in
                                     NavigationLink(destination: AfficherUneListeView(selectedListe: liste, showNavigationBar: $showNavigationBar)
                                         .environment(\.managedObjectContext, viewContext)
                                     ) {
