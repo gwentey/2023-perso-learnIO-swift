@@ -178,6 +178,7 @@ struct SentrainerView: View {
         // maj du score
         let points = etatInfos[etat]?.points
         carte.score = carte.score + (points ?? 0)
+        
         print("Sentrainer en cours \n")
         
         carte.determinerDateProchaineRevision()

@@ -4,23 +4,19 @@ import AVFoundation
 
 class Carte: NSManagedObject {
     
-    private var _score: Int = 0
-
     var score: Int {
         get {
-            return _score
+            return Int(scoreS)
         }
         set {
-            if newValue < 0 {
-                _score = 0
-            } else {
-                _score = newValue
-            }
+            let newScore = max(newValue, 0)
+            scoreS = Int16(newScore)
         }
     }
     
+    
     private var _dateProchaineRevision: Date = Date()
-
+    
     var dateProchaineRevision: Date {
         get {
             return _dateProchaineRevision
@@ -35,8 +31,8 @@ class Carte: NSManagedObject {
     }
     
     var dateDernierMalus = Date()
-
-
+    
+    
     var formattedDernierMalus: String {
         Carte.dateFormatter.string(from: dateDernierMalus)
     }
@@ -80,7 +76,7 @@ class Carte: NSManagedObject {
     }
     
     // Recalculer le score d'une carte
-     func recalculerScore() {
+    func recalculerScore() {
         let tempsDeRetard = self.tempsDeRetard
         if tempsDeRetard == 0 {
             return
