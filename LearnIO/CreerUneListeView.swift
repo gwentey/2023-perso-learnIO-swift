@@ -10,7 +10,7 @@ import SwiftUI
 struct CreerUneListeView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @State private var nom = ""
     
     var body: some View {
@@ -23,9 +23,9 @@ struct CreerUneListeView: View {
                         .stroke(Color.blue, lineWidth: 2)
                 )
                 .padding()
-
+            
             Spacer()
-
+            
             Button(action: {
                 let liste = Liste(context: viewContext)
                 liste.nom = self.nom

@@ -4,6 +4,7 @@ import AVFoundation
 
 class Carte: NSManagedObject {
     
+    // Datacore : ScoreS
     var score: Int {
         get {
             return Int(scoreS)
@@ -14,6 +15,7 @@ class Carte: NSManagedObject {
         }
     }
     
+    // Datacore : dateProchaineRevisionS
     var dateProchaineRevision: Date {
         get {
             return dateProchaineRevisionS ?? Date()

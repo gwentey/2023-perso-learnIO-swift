@@ -10,72 +10,78 @@ import SwiftUI
 struct CreerUneCarteView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @State var avant : String = ""
     @State var arriere : String = ""
     @ObservedObject var liste : Liste
-
+    
     var body: some View {
-        VStack {
-            Spacer()
-            
-            TextEditor(text: $avant)
-                .disableAutocorrection(true)
-                .frame(height: 120)
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.blue, lineWidth: 2)
-                )
-                .padding()
-            
-            TextEditor(text: $arriere)
-                .disableAutocorrection(true)
-                .frame(height: 120)
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.blue, lineWidth: 2)
-                )
-                .padding()
-            
-            Button(action: {
-
-                let carte = Carte(context: viewContext)
+        ScrollView{
+            VStack {
+                Spacer()
                 
-                carte.avant = avant
-                carte.arriere = arriere
-                carte.liste = liste
-                carte.dateProchaineRevision = Date()
-
-                do {
-                    try viewContext.save()
-                }
-                catch {
-                    // Handle Error
-                }
-                
-                avant = ""
-                arriere = ""
-            }) {
-                Text("Ajouter la carte")
-                    .fontWeight(.bold)
-                    .font(.system(size: 20))
-                    .foregroundColor(.white)
+                TextEditor(text: $avant)
+                    .disableAutocorrection(true)
+                    .frame(height: 120)
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.blue, lineWidth: 2)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.blue)
-                            )
                     )
+                    .padding()
+                
+                TextEditor(text: $arriere)
+                    .disableAutocorrection(true)
+                    .frame(height: 120)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.blue, lineWidth: 2)
+                    )
+                    .padding()
+                
+                Button(action: {
+                    
+                    let carte = Carte(context: viewContext)
+                    
+                    carte.avant = avant
+                    carte.arriere = arriere
+                    carte.liste = liste
+                    carte.dateProchaineRevision = Date()
+                    
+                    do {
+                        try viewContext.save()
+                    }
+                    catch {
+                        // Handle Error
+                    }
+                    
+                    avant = ""
+                    arriere = ""
+                }) {
+                    Text("Ajouter la carte")
+                        .fontWeight(.bold)
+                        .font(.system(size: 20))
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.blue, lineWidth: 2)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color.blue)
+                                )
+                        )
+                }
+                Spacer()
             }
-            Spacer()
+            .navigationBarTitle("Crée")
         }
-        .navigationBarTitle("Crée")
+        .onTapGesture {
+            KeyboardTools.hideKeyboard()
+        }
     }
+    
 }
 
 struct CreerUneCarteView_Previews: PreviewProvider {

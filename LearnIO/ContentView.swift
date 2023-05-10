@@ -24,6 +24,7 @@ struct ContentView: View {
         fetchRequest.map { $0 }
     }
     
+    
     var body: some View {
         TabView(selection: $selection) {
             NavigationView {
@@ -33,7 +34,7 @@ struct ContentView: View {
                         ScrollView {
                             LazyVGrid(columns: [GridItem(.adaptive(minimum: 110))], spacing: 20) {
                                 ForEach(listes.filter { $0.prochaineRevisionDansMoinsDe(99) != nil && ($0.prochaineRevisionDansMoinsDe(99) ?? 0) <= 0 }.sorted(by: { $0.prochaineRevisionDansMoinsDe(99) ?? 0 > $1.prochaineRevisionDansMoinsDe(99) ?? 0 })) { liste in
-
+                                    
                                     NavigationLink(destination: AfficherUneListeView(selectedListe : liste, showNavigationBar: $showNavigationBar)
                                         .environment(\.managedObjectContext, viewContext)
                                     ) {
@@ -62,6 +63,7 @@ struct ContentView: View {
                                     }
                                 }
                             }.padding(10)
+                                .padding(.bottom)
                         }
                     }
                     

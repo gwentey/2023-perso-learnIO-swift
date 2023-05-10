@@ -6,16 +6,35 @@
 //
 
 import SwiftUI
-import SwiftUICharts
+import Charts
 
 struct AfficherUneListeView: View {
+    
+    struct AfficherUneListeDataGrapheChartBar: Identifiable {
+        var type: String
+        var nombre: Double
+        var couleur: String
+        var id = UUID()
+    }
+    
+    
+    var data: [AfficherUneListeDataGrapheChartBar] = [
+        .init(type: "G", nombre: 5, couleur: "red"),
+        .init(type: "F", nombre: 4, couleur: "green"),
+        .init(type: "E", nombre: 4, couleur: "blue"),
+        .init(type: "D", nombre: 4, couleur: "orange"),
+        .init(type: "C", nombre: 4, couleur: "purple"),
+        .init(type: "B", nombre: 4, couleur: "pink"),
+        .init(type: "A", nombre: 4, couleur: "yellow")
+    ]
+    
     
     @Environment(\.managedObjectContext) private var viewContext
     
     var contientCartesAReviser: Bool {
         selectedListe.nombreCartesAReviser() > 0
     }
-    
+        
     @Binding var showNavigationBar: Bool
     @ObservedObject var selectedListe: Liste
     
@@ -30,6 +49,18 @@ struct AfficherUneListeView: View {
     
     var body: some View {
 
+        Chart {
+            ForEach(data) { shape in
+                BarMark(
+                    x: .value("Shape Type", shape.type),
+                    y: .value("Total Count", shape.nombre)
+                )
+                .foregroundStyle(by: .value("Shape Color", shape.couleur))
+            }
+        }
+        .chartLegend(.hidden)
+
+            
         Spacer()
         Text("Les cartes")
             .font(.headline)

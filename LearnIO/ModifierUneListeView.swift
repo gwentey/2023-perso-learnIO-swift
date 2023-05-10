@@ -16,50 +16,55 @@ struct ModifierUneListeView: View {
     @State var nom: String = ""
     
     var body: some View {
-        VStack {
-            Spacer()
-            TextField("Nom de la liste", text: $nom)
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.blue, lineWidth: 2)
-                )
-                .padding()
-            
-            Spacer()
-            
-            Button(action: {
-                liste.nom = self.nom
-                
-                do {
-                    try viewContext.save()
-                }
-                catch {
-                    // Handle Error
-                }
-                
-            }) {
-                Text("Modifier la liste")
-                    .fontWeight(.bold)
-                    .font(.system(size: 20))
-                    .foregroundColor(.white)
+        ScrollView{
+            VStack {
+                Spacer()
+                TextField("Nom de la liste", text: $nom)
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.blue, lineWidth: 2)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.blue)
-                            )
                     )
+                    .padding()
+                
+                Spacer()
+                
+                Button(action: {
+                    liste.nom = self.nom
+                    
+                    do {
+                        try viewContext.save()
+                    }
+                    catch {
+                        // Handle Error
+                    }
+                    
+                }) {
+                    Text("Modifier la liste")
+                        .fontWeight(.bold)
+                        .font(.system(size: 20))
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.blue, lineWidth: 2)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color.blue)
+                                )
+                        )
+                }
+                Spacer()
             }
-            Spacer()
+            .navigationBarTitle("Modifier : " + liste.nom!)
+            .onAppear {
+                self.nom = self.liste.nom!
+            }
+            
         }
-        .navigationBarTitle("Modifier : " + liste.nom!)
-        .onAppear {
-            self.nom = self.liste.nom!
+        .onTapGesture {
+            KeyboardTools.hideKeyboard()
         }
-        
     }
 }
 
