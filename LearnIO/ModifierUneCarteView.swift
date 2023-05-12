@@ -23,7 +23,7 @@ struct ModifierUneCarteView: View {
         VStack {
             Spacer()
             Text("Niveau : " + String(describing: carte.niveau))
-            Text("Date prochaine revision : " + String(describing: carte.dateProchaineRevision))
+            Text("Date prochaine revision : " + String(describing: DateTools.DateFormatteur(carte.dateProchaineRevision)))
             Text("Score : " + String(describing: carte.score))
 
             

@@ -27,6 +27,7 @@
 		925F16EB29FEA90B00EF6A66 /* flipsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 925F16EA29FEA90B00EF6A66 /* flipsound.mp3 */; };
 		9269D92B2A0920490061E0C9 /* KeyboardTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9269D92A2A0920490061E0C9 /* KeyboardTools.swift */; };
 		92D0CF7129F837A0001789ED /* Etat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D0CF7029F837A0001789ED /* Etat.swift */; };
+		92D69EA12A0ECEB0000D0D8C /* DateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D69EA02A0ECEB0000D0D8C /* DateTools.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		925F16EA29FEA90B00EF6A66 /* flipsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flipsound.mp3; sourceTree = "<group>"; };
 		9269D92A2A0920490061E0C9 /* KeyboardTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardTools.swift; sourceTree = "<group>"; };
 		92D0CF7029F837A0001789ED /* Etat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Etat.swift; sourceTree = "<group>"; };
+		92D69EA02A0ECEB0000D0D8C /* DateTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTools.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				9269D92A2A0920490061E0C9 /* KeyboardTools.swift */,
+				92D69EA02A0ECEB0000D0D8C /* DateTools.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				920D948429F50FBE00A09AD9 /* Liste.swift in Sources */,
 				920D948C29F514D000A09AD9 /* AfficherUneListeView.swift in Sources */,
 				920D947A29F50F3900A09AD9 /* LearnIO.xcdatamodeld in Sources */,
+				92D69EA12A0ECEB0000D0D8C /* DateTools.swift in Sources */,
 				9254614329F51BEE0069A04D /* Carte.swift in Sources */,
 				9231B80029F6B11F00603E37 /* SentrainerView.swift in Sources */,
 				9259706729F59A8200E84BDE /* Session.swift in Sources */,
@@ -373,7 +377,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_ASSET_PATHS = "\"LearnIO/Preview Content\"";
 				DEVELOPMENT_TEAM = 35AANAQ9DL;
 				ENABLE_PREVIEWS = YES;
@@ -389,7 +393,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = gwentey.LearnIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -404,7 +408,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_ASSET_PATHS = "\"LearnIO/Preview Content\"";
 				DEVELOPMENT_TEAM = 35AANAQ9DL;
 				ENABLE_PREVIEWS = YES;
@@ -420,7 +424,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = gwentey.LearnIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

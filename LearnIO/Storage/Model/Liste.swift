@@ -18,6 +18,21 @@ class Liste: NSManagedObject {
         }
     }
     
+    func compterCartesParNiveau() -> [Niveau: Int] {
+        var cartesParNiveau: [Niveau: Int] = [:]
+        
+        if let cartes = cartes {
+            for carte in cartes {
+                if let carte = carte as? Carte { // Vérifie que la carte est bien une instance de la classe Carte
+                    let niveau = carte.niveau
+                    cartesParNiveau[niveau, default: 0] += 1
+                }
+            }
+        }
+        
+        return cartesParNiveau
+    }
+    
     func prochaineRevisionDansMoinsDe(_ jours: Int) -> Int? {
         let maintenant = Date()
         var prochaineRevisionDansMoinsDeJours: Int? = nil

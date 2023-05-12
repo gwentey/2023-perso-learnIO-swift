@@ -11,22 +11,30 @@ import Charts
 struct AfficherUneListeView: View {
     
     struct AfficherUneListeDataGrapheChartBar: Identifiable {
+        var id = UUID()
         var type: String
         var nombre: Double
         var couleur: String
-        var id = UUID()
     }
     
-    
-    var data: [AfficherUneListeDataGrapheChartBar] = [
-        .init(type: "G", nombre: 5, couleur: "red"),
-        .init(type: "F", nombre: 4, couleur: "green"),
-        .init(type: "E", nombre: 4, couleur: "blue"),
-        .init(type: "D", nombre: 4, couleur: "orange"),
-        .init(type: "C", nombre: 4, couleur: "purple"),
-        .init(type: "B", nombre: 4, couleur: "pink"),
-        .init(type: "A", nombre: 4, couleur: "yellow")
-    ]
+    var data: [AfficherUneListeDataGrapheChartBar] {
+        let cartesParNiveau = selectedListe.compterCartesParNiveau()
+        return Niveau.allCases.reversed().map { niveau in
+            let nombre = Double(cartesParNiveau[niveau, default: 0])
+            let couleur: String
+            switch niveau {
+            case .A: couleur = "red"
+            case .B: couleur = "green"
+            case .C: couleur = "blue"
+            case .D: couleur = "orange"
+            case .E: couleur = "purple"
+            case .F: couleur = "pink"
+            case .G: couleur = "yellow"
+            }
+            return AfficherUneListeDataGrapheChartBar(type: "\(niveau)", nombre: nombre, couleur: couleur)
+        }
+    }
+
     
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -59,6 +67,7 @@ struct AfficherUneListeView: View {
             }
         }
         .chartLegend(.hidden)
+        .frame(height: 150)
 
             
         Spacer()

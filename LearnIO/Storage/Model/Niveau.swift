@@ -11,7 +11,7 @@ struct NiveauInfo {
     var nbJour: Int
 }
 
-enum Niveau {
+enum Niveau : CaseIterable{
     case A
     case B
     case C
