@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9203392E29F7DB70009752D7 /* Niveau.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203392D29F7DB70009752D7 /* Niveau.swift */; };
+		92076BAD2A0FB9CC0064F976 /* NotificationTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92076BAC2A0FB9CC0064F976 /* NotificationTools.swift */; };
 		920D946E29F50F3700A09AD9 /* LearnIOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D946D29F50F3700A09AD9 /* LearnIOApp.swift */; };
 		920D947029F50F3700A09AD9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D946F29F50F3700A09AD9 /* ContentView.swift */; };
 		920D947229F50F3900A09AD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 920D947129F50F3900A09AD9 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		9203392D29F7DB70009752D7 /* Niveau.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Niveau.swift; sourceTree = "<group>"; };
+		92076BAC2A0FB9CC0064F976 /* NotificationTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTools.swift; sourceTree = "<group>"; };
 		920D946A29F50F3700A09AD9 /* LearnIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		920D946D29F50F3700A09AD9 /* LearnIOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnIOApp.swift; sourceTree = "<group>"; };
 		920D946F29F50F3700A09AD9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				9269D92A2A0920490061E0C9 /* KeyboardTools.swift */,
 				92D69EA02A0ECEB0000D0D8C /* DateTools.swift */,
+				92076BAC2A0FB9CC0064F976 /* NotificationTools.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				920D947029F50F3700A09AD9 /* ContentView.swift in Sources */,
 				920D948429F50FBE00A09AD9 /* Liste.swift in Sources */,
 				920D948C29F514D000A09AD9 /* AfficherUneListeView.swift in Sources */,
+				92076BAD2A0FB9CC0064F976 /* NotificationTools.swift in Sources */,
 				920D947A29F50F3900A09AD9 /* LearnIO.xcdatamodeld in Sources */,
 				92D69EA12A0ECEB0000D0D8C /* DateTools.swift in Sources */,
 				9254614329F51BEE0069A04D /* Carte.swift in Sources */,

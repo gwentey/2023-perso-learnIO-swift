@@ -7,7 +7,7 @@ struct SplashScreenView: View {
     @State private var opacity = 0.5
     
     let persistenceController = PersistenceController.shared
-
+    
     
     // Customise your SplashScreen here
     var body: some View {
@@ -21,8 +21,8 @@ struct SplashScreenView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 220, height: 220)
-
-
+                    
+                    
                 }
                 .scaleEffect(size)
                 .opacity(opacity)
@@ -39,6 +39,14 @@ struct SplashScreenView: View {
                         self.isActive = true
                     }
                 }
+                UNUserNotificationCenter.current().getNotificationSettings { settings in
+                    if settings.authorizationStatus != .authorized {
+                        // Nous n'avons pas la permission
+                        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                        }
+                    }
+                }
+                NotificationTools.scheduleNotification()
             }
         }
     }
