@@ -20,64 +20,70 @@ struct ModifierUneCarteView: View {
 
     
     var body: some View {
-        VStack {
-            Spacer()
-            Text("Niveau : " + String(describing: carte.niveau))
-            Text("Date prochaine revision : " + String(describing: DateTools.DateFormatteur(carte.dateProchaineRevision)))
-            Text("Score : " + String(describing: carte.score))
+        GeometryReader { _ in
 
-            
-            TextEditor(text: $avant)
-                .disableAutocorrection(true)
-                .frame(height: 120)
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.blue, lineWidth: 2)
-                )
-                .padding()
-            
-            TextEditor(text: $arriere)
-                .disableAutocorrection(true)
-                .frame(height: 120)
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.blue, lineWidth: 2)
-                )
-                .padding()
-            
-            Button(action: {
+            VStack {
+                Spacer()
+                Text("Niveau : " + String(describing: carte.niveau))
+                Text("Date prochaine revision : " + String(describing: DateTools.DateFormatteur(carte.dateProchaineRevision)))
+                Text("Score : " + String(describing: carte.score))
                 
-                carte.avant = avant
-                carte.arriere = arriere
                 
-                do {
-                    try viewContext.save()
-                    self.presentationMode.wrappedValue.dismiss()
-                    
-                }
-                catch {
-                    // Handle Error
-                }
-                
-            }) {
-                Text("Modifier la carte")
-                    .fontWeight(.bold)
-                    .font(.system(size: 20))
-                    .foregroundColor(.white)
+                TextEditor(text: $avant)
+                    .disableAutocorrection(true)
+                    .frame(height: 120)
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.blue, lineWidth: 2)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.blue)
-                            )
                     )
+                    .padding()
+                
+                TextEditor(text: $arriere)
+                    .disableAutocorrection(true)
+                    .frame(height: 120)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.blue, lineWidth: 2)
+                    )
+                    .padding()
+                
+                Button(action: {
+                    
+                    carte.avant = avant
+                    carte.arriere = arriere
+                    
+                    do {
+                        try viewContext.save()
+                        self.presentationMode.wrappedValue.dismiss()
+                        
+                    }
+                    catch {
+                        // Handle Error
+                    }
+                    
+                }) {
+                    Text("Modifier la carte")
+                        .fontWeight(.bold)
+                        .font(.system(size: 20))
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.blue, lineWidth: 2)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color.blue)
+                                )
+                        )
+                }
+                
+                Spacer()
             }
-            
-            Spacer()
+        }
+        .onTapGesture {
+            KeyboardTools.hideKeyboard()
         }
         .navigationBarItems(trailing: HStack {
             Button(action: {
