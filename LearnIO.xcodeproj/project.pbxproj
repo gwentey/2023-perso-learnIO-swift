@@ -17,6 +17,9 @@
 		920D947A29F50F3900A09AD9 /* LearnIO.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 920D947829F50F3900A09AD9 /* LearnIO.xcdatamodeld */; };
 		920D948429F50FBE00A09AD9 /* Liste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D948329F50FBE00A09AD9 /* Liste.swift */; };
 		920D948C29F514D000A09AD9 /* AfficherUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D948B29F514D000A09AD9 /* AfficherUneListeView.swift */; };
+		9215A7932A101BB0009FA8BD /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9215A7922A101BB0009FA8BD /* TestView.swift */; };
+		9215A7962A1025E0009FA8BD /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9215A7952A1025E0009FA8BD /* Color+Hex.swift */; };
+		9215A79A2A102731009FA8BD /* PaletteColorTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9215A7992A102731009FA8BD /* PaletteColorTools.swift */; };
 		9231B7FC29F6A42600603E37 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9231B7FB29F6A42600603E37 /* SplashScreenView.swift */; };
 		9231B80029F6B11F00603E37 /* SentrainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9231B7FF29F6B11F00603E37 /* SentrainerView.swift */; };
 		9254614129F517EA0069A04D /* CreerUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9254614029F517EA0069A04D /* CreerUneListeView.swift */; };
@@ -43,6 +46,9 @@
 		920D947929F50F3900A09AD9 /* LearnIO.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LearnIO.xcdatamodel; sourceTree = "<group>"; };
 		920D948329F50FBE00A09AD9 /* Liste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liste.swift; sourceTree = "<group>"; };
 		920D948B29F514D000A09AD9 /* AfficherUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfficherUneListeView.swift; sourceTree = "<group>"; };
+		9215A7922A101BB0009FA8BD /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		9215A7952A1025E0009FA8BD /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		9215A7992A102731009FA8BD /* PaletteColorTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteColorTools.swift; sourceTree = "<group>"; };
 		9229AF1C2A079BAC0017C46A /* XCode.nosync */ = {isa = PBXFileReference; lastKnownFileType = folder; name = XCode.nosync; path = ..; sourceTree = "<group>"; };
 		9229AF1D2A079C790017C46A /* MyLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MyLibrary; path = ../MyLibrary; sourceTree = "<group>"; };
 		9229AF1E2A079C8E0017C46A /* MyLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MyLibrary; path = ../MyLibrary; sourceTree = "<group>"; };
@@ -92,8 +98,10 @@
 		920D946C29F50F3700A09AD9 /* LearnIO */ = {
 			isa = PBXGroup;
 			children = (
+				9215A7942A1025CF009FA8BD /* Extensions */,
 				9269D9272A091FA50061E0C9 /* Tools */,
 				925F16EA29FEA90B00EF6A66 /* flipsound.mp3 */,
+				9215A7922A101BB0009FA8BD /* TestView.swift */,
 				9231B7FF29F6B11F00603E37 /* SentrainerView.swift */,
 				9231B7FB29F6A42600603E37 /* SplashScreenView.swift */,
 				9254614029F517EA0069A04D /* CreerUneListeView.swift */,
@@ -140,6 +148,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		9215A7942A1025CF009FA8BD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9215A7952A1025E0009FA8BD /* Color+Hex.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		925D88B52A079AA3006B6A6B /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +173,7 @@
 				9269D92A2A0920490061E0C9 /* KeyboardTools.swift */,
 				92D69EA02A0ECEB0000D0D8C /* DateTools.swift */,
 				92076BAC2A0FB9CC0064F976 /* NotificationTools.swift */,
+				9215A7992A102731009FA8BD /* PaletteColorTools.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -250,8 +267,11 @@
 				920D947A29F50F3900A09AD9 /* LearnIO.xcdatamodeld in Sources */,
 				92D69EA12A0ECEB0000D0D8C /* DateTools.swift in Sources */,
 				9254614329F51BEE0069A04D /* Carte.swift in Sources */,
+				9215A7962A1025E0009FA8BD /* Color+Hex.swift in Sources */,
+				9215A79A2A102731009FA8BD /* PaletteColorTools.swift in Sources */,
 				9231B80029F6B11F00603E37 /* SentrainerView.swift in Sources */,
 				9259706729F59A8200E84BDE /* Session.swift in Sources */,
+				9215A7932A101BB0009FA8BD /* TestView.swift in Sources */,
 				9259706529F592C700E84BDE /* CreerUneCarteView.swift in Sources */,
 				920D946E29F50F3700A09AD9 /* LearnIOApp.swift in Sources */,
 				9254614129F517EA0069A04D /* CreerUneListeView.swift in Sources */,
