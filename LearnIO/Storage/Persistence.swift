@@ -14,7 +14,7 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         
-        for i in 0..<10 {
+        for i in 0..<40 {
             let newListe = Liste(context: viewContext)
             newListe.nom = "Liste \(i)"
             

@@ -39,7 +39,7 @@ struct CreerUneListeView: View {
                     
                     do {
                         try viewContext.save()
-                        self.navigateToContentView = ContentView()
+                        // self.navigateToContentView = ContentView()
                     }
                     catch {
                         // Handle Error
