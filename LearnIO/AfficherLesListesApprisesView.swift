@@ -66,6 +66,7 @@ struct AfficherLesListesApprisesView: View {
                             .frame(width: 110, height: 110)
                         }
                     }
+                    
                 }.padding(10)
                     .padding(.bottom)
                     .background(GeometryReader {

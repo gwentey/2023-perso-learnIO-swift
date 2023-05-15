@@ -83,7 +83,7 @@ struct AppBarView: View {
                                .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
                                .first { $0.isKeyWindow }?.safeAreaInsets.top)
            .background(PaletteColorTools.one)
-           .background(PaletteColorTools.one)
+        
     }
 }
 

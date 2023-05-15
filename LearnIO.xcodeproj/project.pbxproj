@@ -29,6 +29,7 @@
 		9259706729F59A8200E84BDE /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9259706629F59A8200E84BDE /* Session.swift */; };
 		925F16EB29FEA90B00EF6A66 /* flipsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 925F16EA29FEA90B00EF6A66 /* flipsound.mp3 */; };
 		9269D92B2A0920490061E0C9 /* KeyboardTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9269D92A2A0920490061E0C9 /* KeyboardTools.swift */; };
+		92715A6E2A122A400072A218 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92715A6D2A122A400072A218 /* FloatingButton.swift */; };
 		92881F6B2A10FFAD00677258 /* AfficherLesListesApprisesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92881F6A2A10FFAD00677258 /* AfficherLesListesApprisesView.swift */; };
 		92881F6D2A11000C00677258 /* AfficherLesListesAReviserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92881F6C2A11000C00677258 /* AfficherLesListesAReviserView.swift */; };
 		92881F712A1100B400677258 /* AppBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92881F702A1100B400677258 /* AppBarView.swift */; };
@@ -65,6 +66,7 @@
 		925D88B62A079AA3006B6A6B /* MyLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MyLibrary; path = ../MyLibrary; sourceTree = "<group>"; };
 		925F16EA29FEA90B00EF6A66 /* flipsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flipsound.mp3; sourceTree = "<group>"; };
 		9269D92A2A0920490061E0C9 /* KeyboardTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardTools.swift; sourceTree = "<group>"; };
+		92715A6D2A122A400072A218 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		92881F6A2A10FFAD00677258 /* AfficherLesListesApprisesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfficherLesListesApprisesView.swift; sourceTree = "<group>"; };
 		92881F6C2A11000C00677258 /* AfficherLesListesAReviserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfficherLesListesAReviserView.swift; sourceTree = "<group>"; };
 		92881F702A1100B400677258 /* AppBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarView.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			children = (
 				9231B7FB29F6A42600603E37 /* SplashScreenView.swift */,
 				92881F702A1100B400677258 /* AppBarView.swift */,
+				92715A6D2A122A400072A218 /* FloatingButton.swift */,
 			);
 			path = Snippets;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				9254614929F539EC0069A04D /* ModifierUneListeView.swift in Sources */,
 				9203392E29F7DB70009752D7 /* Niveau.swift in Sources */,
 				92881F6D2A11000C00677258 /* AfficherLesListesAReviserView.swift in Sources */,
+				92715A6E2A122A400072A218 /* FloatingButton.swift in Sources */,
 				9231B7FC29F6A42600603E37 /* SplashScreenView.swift in Sources */,
 				92D0CF7129F837A0001789ED /* Etat.swift in Sources */,
 				9269D92B2A0920490061E0C9 /* KeyboardTools.swift in Sources */,

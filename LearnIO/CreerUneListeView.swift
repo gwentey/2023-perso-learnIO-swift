@@ -10,14 +10,55 @@ import SwiftUI
 struct CreerUneListeView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    
     @State private var nom = ""
-    
-    // redirection formulaire est rempli
-    @State private var navigateToContentView: ContentView?
+    @Environment(\.presentationMode) var presentationMode
 
-    
     var body: some View {
+        
+        ZStack(alignment: .bottomTrailing) {
+            VStack(spacing: 0) {
+                
+                VStack(spacing: 25) {
+                    
+                    HStack {
+                        
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.white)
+                        }
+                        
+                        Text("LearnIO")
+                            .fontWeight(.bold)
+                            .font(.title)
+                            .foregroundColor(.white)
+                            .padding(.leading, 10)
+                        
+                        Spacer()
+                        
+                        Button(action: {}) {
+                            Image(systemName: "magnifyingglass")
+                                .resizable()
+                                .frame(width: 18, height: 18)
+                                .foregroundColor(.white)
+                        }
+                        
+                    }.frame(height: 80)
+                }
+                .padding(.horizontal)
+                .padding(.top, UIApplication.shared.connectedScenes
+                    .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+                    .first { $0.isKeyWindow }?.safeAreaInsets.top)
+                .background(PaletteColorTools.one)
+                
+                
+            }
+            .edgesIgnoringSafeArea(.all)
+
+        }
+        
+        
         GeometryReader { _ in
             
             VStack {
@@ -26,7 +67,7 @@ struct CreerUneListeView: View {
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 2)
+                            .stroke(PaletteColorTools.one, lineWidth: 2)
                     )
                     .padding()
                 
@@ -39,7 +80,6 @@ struct CreerUneListeView: View {
                     
                     do {
                         try viewContext.save()
-                        // self.navigateToContentView = ContentView()
                     }
                     catch {
                         // Handle Error
@@ -53,31 +93,21 @@ struct CreerUneListeView: View {
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.blue, lineWidth: 2)
+                                .stroke(PaletteColorTools.two, lineWidth: 2)
                                 .background(
                                     RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.blue)
+                                        .fill(PaletteColorTools.one)
                                 )
                         )
                 }
                 Spacer()
             }
-
+            
         }
         .onTapGesture {
             KeyboardTools.hideKeyboard()
         }
-        .navigationBarTitle("Crée une liste")
-        .background(
-            NavigationLink(
-                destination: navigateToContentView,
-                label: { EmptyView() })
-        )
+        .navigationBarBackButtonHidden(true)
     }
 }
 
-struct CreerUneListeView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreerUneListeView()
-    }
-}
