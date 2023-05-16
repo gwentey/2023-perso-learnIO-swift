@@ -10,11 +10,16 @@ import SwiftUI
 struct CreerUneListeView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var nom = ""
     @Environment(\.presentationMode) var presentationMode
 
+    @State private var nom = ""
+    @State private var isListeCreee = false
+    @State private var listeCreer : Liste?
+    
     var body: some View {
         
+        NavigationStack {
+
         ZStack(alignment: .bottomTrailing) {
             VStack(spacing: 0) {
                 
@@ -57,57 +62,71 @@ struct CreerUneListeView: View {
             .edgesIgnoringSafeArea(.all)
 
         }
-        
-        
-        GeometryReader { _ in
-            
-            VStack {
-                Spacer()
-                TextField("Nom de la liste", text: $nom)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(PaletteColorTools.one, lineWidth: 2)
-                    )
-                    .padding()
-                
-                Spacer()
-                
-                Button(action: {
-                    let liste = Liste(context: viewContext)
-                    liste.nom = self.nom
-                    self.nom = ""
                     
-                    do {
-                        try viewContext.save()
-                    }
-                    catch {
-                        // Handle Error
-                    }
-                    
-                }) {
-                    Text("Créer la liste")
-                        .fontWeight(.bold)
-                        .font(.system(size: 20))
-                        .foregroundColor(.white)
+            GeometryReader { _ in
+                
+                VStack {
+                    Spacer()
+                    TextField("Nom de la liste", text: $nom)
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(PaletteColorTools.two, lineWidth: 2)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(PaletteColorTools.one)
-                                )
+                                .stroke(PaletteColorTools.one, lineWidth: 2)
                         )
+                        .padding()
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        let liste = Liste(context: viewContext)
+                        liste.nom = self.nom
+                        self.nom = ""
+                        
+                        do {
+                            try viewContext.save()
+                            print("Liste crée")
+                        }
+                        catch {
+                            // Handle Error
+                        }
+                        
+                        self.listeCreer = liste
+                        self.isListeCreee = true
+                        
+                    }) {
+                        Text("Créer la liste")
+                            .fontWeight(.bold)
+                            .font(.system(size: 20))
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(PaletteColorTools.two, lineWidth: 2)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(PaletteColorTools.one)
+                                    )
+                            )
+                    }
+                    Spacer()
                 }
-                Spacer()
+                
+                
             }
-            
+            .onTapGesture {
+                KeyboardTools.hideKeyboard()
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationDestination(isPresented: $isListeCreee){
+
+                if let selectedListe = listeCreer {
+
+                    AfficherUneListeView(selectedListe: selectedListe)
+                        .environment(\.managedObjectContext, viewContext)
+                }
+                
+            }
         }
-        .onTapGesture {
-            KeyboardTools.hideKeyboard()
-        }
-        .navigationBarBackButtonHidden(true)
     }
 }
 

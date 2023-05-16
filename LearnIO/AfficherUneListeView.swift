@@ -34,7 +34,6 @@ struct AfficherUneListeView: View {
             return AfficherUneListeDataGrapheChartBar(type: "\(niveau)", nombre: nombre, couleur: couleur)
         }
     }
-
     
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -43,13 +42,11 @@ struct AfficherUneListeView: View {
         selectedListe.nombreCartesAReviser() > 0
     }
         
-    @Binding var showNavigationBar: Bool
     @ObservedObject var selectedListe: Liste
     
     @FetchRequest var cartes: FetchedResults<Carte>
     
-    init(selectedListe: Liste, showNavigationBar: Binding<Bool>) {
-        self._showNavigationBar = showNavigationBar
+    init(selectedListe: Liste) {
         
         self.selectedListe = selectedListe
         self._cartes = FetchRequest(entity: Carte.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Carte.avant, ascending: true)], predicate: NSPredicate(format: "liste == %@", selectedListe))
@@ -71,6 +68,8 @@ struct AfficherUneListeView: View {
 
             
         Spacer()
+        Text(selectedListe.nom ?? "ERREUR")
+
         Text("Les cartes")
             .font(.headline)
         Text(selectedListe.prochaineRevisionDansMoinsDe(99).map { "\($0) jours" } ?? "")
@@ -106,14 +105,11 @@ struct AfficherUneListeView: View {
                             Spacer()
                         }
                         .frame(width: 100, height: 100)
-                        .toolbar(showNavigationBar ? .visible : .hidden, for: .tabBar)
-                        .onAppear {
-                            withAnimation {
-                                showNavigationBar = false
-                            }
-                        }
                     }
                 }
+            }
+            .onAppear{
+                viewContext.refreshAllObjects()
             }
         }
         .navigationBarItems(trailing: HStack {
@@ -177,11 +173,9 @@ struct AfficherUneListeView_Previews: PreviewProvider {
         let context = PersistenceController.preview.container.viewContext
         let liste = Liste(context: context)
         liste.nom = "Ma liste de cours"
-        
-        let showNavigationBar = Binding.constant(false)
-        
+                
         return NavigationView {
-            AfficherUneListeView(selectedListe: liste, showNavigationBar: showNavigationBar)
+            AfficherUneListeView(selectedListe: liste)
                 .environment(\.managedObjectContext, context)
         }
     }

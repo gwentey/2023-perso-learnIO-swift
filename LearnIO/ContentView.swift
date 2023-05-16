@@ -8,7 +8,7 @@ struct ContentView: View {
     @State private var show = true
     @State private var choice = 0
     @State private var showFloatingButton = true
-    
+
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottomTrailing) {
@@ -37,6 +37,7 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     FloatingButton(show: $showFloatingButton, choice: $choice)
+                        .environment(\.managedObjectContext, viewContext)
                         .padding()
                         .opacity(showFloatingButton ? 1.0 : 0.0)
                         .scaleEffect(showFloatingButton ? 1.0 : 0.5)

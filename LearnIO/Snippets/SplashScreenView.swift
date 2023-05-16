@@ -39,14 +39,7 @@ struct SplashScreenView: View {
                         self.isActive = true
                     }
                 }
-                UNUserNotificationCenter.current().getNotificationSettings { settings in
-                    if settings.authorizationStatus != .authorized {
-                        // Nous n'avons pas la permission
-                        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-                        }
-                    }
-                }
-                NotificationTools.scheduleNotification()
+
             }
         }
     }

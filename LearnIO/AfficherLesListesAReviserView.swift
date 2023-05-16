@@ -12,7 +12,6 @@ struct AfficherLesListesAReviserView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @State private var selection: Int? = nil
-    @State private var showNavigationBar = false // Etat pour suivre l'état de la navigation bar
     
     // AppBar collapse ?
     @Binding var show : Bool
@@ -34,7 +33,7 @@ struct AfficherLesListesAReviserView: View {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 110))], spacing: 20) {
                     ForEach(listes.filter { $0.prochaineRevisionDansMoinsDe(99) != nil && ($0.prochaineRevisionDansMoinsDe(99) ?? 0) <= 0 }.sorted(by: { $0.prochaineRevisionDansMoinsDe(99) ?? 0 > $1.prochaineRevisionDansMoinsDe(99) ?? 0 })) { liste in
                         
-                        NavigationLink(destination: AfficherUneListeView(selectedListe : liste, showNavigationBar: $showNavigationBar)
+                        NavigationLink(destination: AfficherUneListeView(selectedListe : liste)
                             .environment(\.managedObjectContext, viewContext)
                         ) {
                             VStack {

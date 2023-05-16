@@ -11,7 +11,6 @@ struct AfficherLesListesApprisesView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @State private var selection: Int? = nil
-    @State private var showNavigationBar = false // Etat pour suivre l'état de la navigation bar
     
     // AppBar collapse ?
     @Binding var show : Bool
@@ -39,7 +38,7 @@ struct AfficherLesListesApprisesView: View {
                         }
                         return jours1 < jours2 // tri par ordre croissant de la prochaine révision
                     }), id: \.self) { liste in
-                        NavigationLink(destination: AfficherUneListeView(selectedListe: liste, showNavigationBar: $showNavigationBar)
+                        NavigationLink(destination: AfficherUneListeView(selectedListe: liste)
                             .environment(\.managedObjectContext, viewContext)
                         ) {
                             VStack {

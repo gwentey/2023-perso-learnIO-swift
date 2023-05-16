@@ -20,6 +20,7 @@ struct FloatingButton: View {
             NavigationLink {
                 CreerUneListeView()
                     .environment(\.managedObjectContext, viewContext)
+                    .navigationBarHidden(true)
 
             } label: {
                 Image(systemName: "plus")
