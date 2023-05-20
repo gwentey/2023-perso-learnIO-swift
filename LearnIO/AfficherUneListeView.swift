@@ -10,34 +10,10 @@ import Charts
 
 struct AfficherUneListeView: View {
     
-    struct AfficherUneListeDataGrapheChartBar: Identifiable {
-        var id = UUID()
-        var type: String
-        var nombre: Double
-        var couleur: String
-    }
-    
-    var data: [AfficherUneListeDataGrapheChartBar] {
-        let cartesParNiveau = selectedListe.compterCartesParNiveau()
-        return Niveau.allCases.reversed().map { niveau in
-            let nombre = Double(cartesParNiveau[niveau, default: 0])
-            let couleur: String
-            switch niveau {
-            case .A: couleur = "red"
-            case .B: couleur = "green"
-            case .C: couleur = "blue"
-            case .D: couleur = "orange"
-            case .E: couleur = "purple"
-            case .F: couleur = "pink"
-            case .G: couleur = "yellow"
-            }
-            return AfficherUneListeDataGrapheChartBar(type: "\(niveau)", nombre: nombre, couleur: couleur)
-        }
-    }
-    
-    
+    @State var data: [AfficherUneListeDataGrapheChartBar] = []
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @Environment(\.presentationMode) var presentationMode
+
     var contientCartesAReviser: Bool {
         selectedListe.nombreCartesAReviser() > 0
     }
@@ -48,17 +24,22 @@ struct AfficherUneListeView: View {
     
     @State private var isReturnClicked = false
 
+    private var fromContentView: Bool?
+
     
-    init(selectedListe: Liste) {
-        
+    init(selectedListe: Liste,  fromContentView: Bool? = false) {
+        // la liste selectionnée
         self.selectedListe = selectedListe
         self._cartes = FetchRequest(entity: Carte.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Carte.avant, ascending: true)], predicate: NSPredicate(format: "liste == %@", selectedListe))
+        
+        //permet de mieux rediriger ou fermer la vue
+        self.fromContentView = fromContentView
+        
     }
     
     var body: some View {
         
         NavigationStack {
-            
             
             ZStack(alignment: .bottomTrailing) {
                 VStack(spacing: 0) {
@@ -68,13 +49,19 @@ struct AfficherUneListeView: View {
                         HStack {
                             
                             Button(action: {
-                                self.isReturnClicked = true
+                                
+                                if(fromContentView!) {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                } else {
+                                    self.isReturnClicked = true
+                                }
+                                
                             }) {
                                 Image(systemName: "chevron.left")
                                     .foregroundColor(.white)
                             }
                             
-                            Text("LearnIOX")
+                            Text("LearnIO")
                                 .fontWeight(.bold)
                                 .font(.title)
                                 .foregroundColor(.white)
@@ -92,6 +79,17 @@ struct AfficherUneListeView: View {
                                     .foregroundColor(.white)
                             }
                             
+                            NavigationLink(destination: SentrainerView(liste: selectedListe)
+                            .environment(\.managedObjectContext, viewContext)
+                            ) {
+                            Image(systemName: "play")
+                                    .resizable()
+                                    .frame(width: 18, height: 18)
+                                    .foregroundColor(.white)
+                            }
+                            .disabled(!contientCartesAReviser)
+                            
+                            
                         }.frame(height: 80)
                     }
                     .padding(.horizontal)
@@ -107,7 +105,7 @@ struct AfficherUneListeView: View {
             }
             
             Chart {
-                ForEach(data) { shape in
+                ForEach($data) { $shape in
                     BarMark(
                         x: .value("Shape Type", shape.type),
                         y: .value("Total Count", shape.nombre)
@@ -160,29 +158,20 @@ struct AfficherUneListeView: View {
                             .frame(width: 100, height: 100)
                         }
                     }
-                }
-                .onAppear{
-                    viewContext.refreshAllObjects()
-                }
-            }.navigationBarBackButtonHidden(true)
-            .navigationDestination(isPresented: $isReturnClicked){
-                    ContentView()
-                        .environment(\.managedObjectContext, viewContext)
-                }
+                }.navigationBarBackButtonHidden(true)
+            }
+            .onAppear{
+                data = ChartsTools.GenenerateDataAfficherUneListeDataGrapheChartBar(liste: selectedListe)
+                viewContext.refreshAllObjects()
+
+            }
+
+                
+
             /*
              .navigationBarItems(trailing: HStack {
-             
-             NavigationLink(destination: CreerUneCarteView(liste: selectedListe)
-             .environment(\.managedObjectContext, viewContext)
-             ) {
-             Image(systemName: "plus")
-             }
-             NavigationLink(destination: SentrainerView(liste: selectedListe)
-             .environment(\.managedObjectContext, viewContext)
-             ) {
-             Image(systemName: "play")
-             }
-             .disabled(!contientCartesAReviser)
+
+
              NavigationLink(destination: ModifierUneListeView(liste: selectedListe)
              .environment(\.managedObjectContext, viewContext)
              ) {
@@ -201,8 +190,13 @@ struct AfficherUneListeView: View {
              */
             
         }
+        .navigationDestination(isPresented: $isReturnClicked){
+                ContentView()
+                    .environment(\.managedObjectContext, viewContext)
+        }
 
     }
+
 
     
     func supprimerUneListe(liste: Liste) {

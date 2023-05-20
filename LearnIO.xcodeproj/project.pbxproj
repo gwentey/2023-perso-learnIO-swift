@@ -21,6 +21,7 @@
 		9215A79A2A102731009FA8BD /* PaletteColorTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9215A7992A102731009FA8BD /* PaletteColorTools.swift */; };
 		9231B7FC29F6A42600603E37 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9231B7FB29F6A42600603E37 /* SplashScreenView.swift */; };
 		9231B80029F6B11F00603E37 /* SentrainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9231B7FF29F6B11F00603E37 /* SentrainerView.swift */; };
+		923A16B62A191D6400AB51BA /* ChartsTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923A16B52A191D6400AB51BA /* ChartsTools.swift */; };
 		9254614129F517EA0069A04D /* CreerUneListeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9254614029F517EA0069A04D /* CreerUneListeView.swift */; };
 		9254614329F51BEE0069A04D /* Carte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9254614229F51BEE0069A04D /* Carte.swift */; };
 		9254614729F5393B0069A04D /* ModifierUneCarteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9254614629F5393B0069A04D /* ModifierUneCarteView.swift */; };
@@ -57,6 +58,7 @@
 		9229AF1E2A079C8E0017C46A /* MyLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MyLibrary; path = ../MyLibrary; sourceTree = "<group>"; };
 		9231B7FB29F6A42600603E37 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		9231B7FF29F6B11F00603E37 /* SentrainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentrainerView.swift; sourceTree = "<group>"; };
+		923A16B52A191D6400AB51BA /* ChartsTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsTools.swift; sourceTree = "<group>"; };
 		9254614029F517EA0069A04D /* CreerUneListeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreerUneListeView.swift; sourceTree = "<group>"; };
 		9254614229F51BEE0069A04D /* Carte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carte.swift; sourceTree = "<group>"; };
 		9254614629F5393B0069A04D /* ModifierUneCarteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierUneCarteView.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				92076BAC2A0FB9CC0064F976 /* NotificationTools.swift */,
 				9215A7992A102731009FA8BD /* PaletteColorTools.swift */,
 				92881F722A110B6600677258 /* ViewOffsetKeyTools.swift */,
+				923A16B52A191D6400AB51BA /* ChartsTools.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				920D947029F50F3700A09AD9 /* ContentView.swift in Sources */,
 				920D948429F50FBE00A09AD9 /* Liste.swift in Sources */,
 				92881F732A110B6600677258 /* ViewOffsetKeyTools.swift in Sources */,
+				923A16B62A191D6400AB51BA /* ChartsTools.swift in Sources */,
 				920D948C29F514D000A09AD9 /* AfficherUneListeView.swift in Sources */,
 				92076BAD2A0FB9CC0064F976 /* NotificationTools.swift in Sources */,
 				920D947A29F50F3900A09AD9 /* LearnIO.xcdatamodeld in Sources */,

@@ -38,7 +38,7 @@ struct AfficherLesListesApprisesView: View {
                         }
                         return jours1 < jours2 // tri par ordre croissant de la prochaine révision
                     }), id: \.self) { liste in
-                        NavigationLink(destination: AfficherUneListeView(selectedListe: liste)
+                        NavigationLink(destination: AfficherUneListeView(selectedListe: liste, fromContentView: true)
                             .environment(\.managedObjectContext, viewContext)
                             .navigationBarBackButtonHidden(true)
                         ) {

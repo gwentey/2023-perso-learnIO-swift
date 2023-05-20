@@ -33,7 +33,7 @@ struct AfficherLesListesAReviserView: View {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 110))], spacing: 20) {
                     ForEach(listes.filter { $0.prochaineRevisionDansMoinsDe(99) != nil && ($0.prochaineRevisionDansMoinsDe(99) ?? 0) <= 0 }.sorted(by: { $0.prochaineRevisionDansMoinsDe(99) ?? 0 > $1.prochaineRevisionDansMoinsDe(99) ?? 0 })) { liste in
                         
-                        NavigationLink(destination: AfficherUneListeView(selectedListe : liste)
+                        NavigationLink(destination: AfficherUneListeView(selectedListe : liste, fromContentView: true)
                             .environment(\.managedObjectContext, viewContext)
                             .navigationBarBackButtonHidden(true)
                         ) {
