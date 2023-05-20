@@ -46,6 +46,9 @@ struct AfficherUneListeView: View {
     
     @FetchRequest var cartes: FetchedResults<Carte>
     
+    @State private var isReturnClicked = false
+
+    
     init(selectedListe: Liste) {
         
         self.selectedListe = selectedListe
@@ -53,95 +56,154 @@ struct AfficherUneListeView: View {
     }
     
     var body: some View {
-
-        Chart {
-            ForEach(data) { shape in
-                BarMark(
-                    x: .value("Shape Type", shape.type),
-                    y: .value("Total Count", shape.nombre)
-                )
-                .foregroundStyle(by: .value("Shape Color", shape.couleur))
-            }
-        }
-        .chartLegend(.hidden)
-        .frame(height: 150)
-
-            
-        Spacer()
-        Text(selectedListe.nom ?? "ERREUR")
-
-        Text("Les cartes")
-            .font(.headline)
-        Text(selectedListe.prochaineRevisionDansMoinsDe(99).map { "\($0) jours" } ?? "")
-
         
-        ScrollView {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 5) {
-                ForEach (cartes) { carte in
-                    NavigationLink(destination: ModifierUneCarteView(carte: carte)) {
+        NavigationStack {
+            
+            
+            ZStack(alignment: .bottomTrailing) {
+                VStack(spacing: 0) {
+                    
+                    VStack(spacing: 25) {
                         
-                        VStack {
-                            Spacer()
-                            RoundedRectangle(cornerRadius: 10)
+                        HStack {
+                            
+                            Button(action: {
+                                self.isReturnClicked = true
+                            }) {
+                                Image(systemName: "chevron.left")
+                                    .foregroundColor(.white)
+                            }
+                            
+                            Text("LearnIOX")
+                                .fontWeight(.bold)
+                                .font(.title)
                                 .foregroundColor(.white)
-                                .shadow(radius: 3)
-                                .padding(5) // Ajouter un padding supplémentaire
-                                .overlay(
-                                    VStack {
-                                        Spacer()
-                                        Text(carte.avant ?? "")
-                                            .font(.system(size: 14))
-                                        Spacer()
-                                        
-                                        Divider()
-                                        Spacer()
-                                        
-                                        Text(carte.arriere ?? "")
-                                            .font(.system(size: 14))
-                                        Spacer()
-                                        
-                                    }
-                                )
+                                .padding(.leading, 10)
+                            
                             Spacer()
-                        }
-                        .frame(width: 100, height: 100)
+    
+                            
+                            NavigationLink(destination: CreerUneCarteView(liste: selectedListe)
+                            .environment(\.managedObjectContext, viewContext)
+                            ) {
+                            Image(systemName: "plus")
+                                    .resizable()
+                                    .frame(width: 18, height: 18)
+                                    .foregroundColor(.white)
+                            }
+                            
+                        }.frame(height: 80)
                     }
+                    .padding(.horizontal)
+                    .padding(.top, UIApplication.shared.connectedScenes
+                        .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+                        .first { $0.isKeyWindow }?.safeAreaInsets.top)
+                    .background(PaletteColorTools.one)
+                    
+                    
+                }
+                .edgesIgnoringSafeArea(.all)
+                
+            }
+            
+            Chart {
+                ForEach(data) { shape in
+                    BarMark(
+                        x: .value("Shape Type", shape.type),
+                        y: .value("Total Count", shape.nombre)
+                    )
+                    .foregroundStyle(by: .value("Shape Color", shape.couleur))
                 }
             }
-            .onAppear{
-                viewContext.refreshAllObjects()
-            }
+            .chartLegend(.hidden)
+            .frame(height: 150)
+            
+            
+            
+            Spacer()
+            Text(selectedListe.nom ?? "ERREUR")
+            
+            Text("Les cartes")
+                .font(.headline)
+            Text(selectedListe.prochaineRevisionDansMoinsDe(99).map { "\($0) jours" } ?? "")
+            
+            
+            ScrollView {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 5) {
+                    ForEach (cartes) { carte in
+                        NavigationLink(destination: ModifierUneCarteView(carte: carte)) {
+                            
+                            VStack {
+                                Spacer()
+                                RoundedRectangle(cornerRadius: 10)
+                                    .foregroundColor(.white)
+                                    .shadow(radius: 3)
+                                    .padding(5) // Ajouter un padding supplémentaire
+                                    .overlay(
+                                        VStack {
+                                            Spacer()
+                                            Text(carte.avant ?? "")
+                                                .font(.system(size: 14))
+                                            Spacer()
+                                            
+                                            Divider()
+                                            Spacer()
+                                            
+                                            Text(carte.arriere ?? "")
+                                                .font(.system(size: 14))
+                                            Spacer()
+                                            
+                                        }
+                                    )
+                                Spacer()
+                            }
+                            .frame(width: 100, height: 100)
+                        }
+                    }
+                }
+                .onAppear{
+                    viewContext.refreshAllObjects()
+                }
+            }.navigationBarBackButtonHidden(true)
+            .navigationDestination(isPresented: $isReturnClicked){
+                    ContentView()
+                        .environment(\.managedObjectContext, viewContext)
+                }
+            /*
+             .navigationBarItems(trailing: HStack {
+             
+             NavigationLink(destination: CreerUneCarteView(liste: selectedListe)
+             .environment(\.managedObjectContext, viewContext)
+             ) {
+             Image(systemName: "plus")
+             }
+             NavigationLink(destination: SentrainerView(liste: selectedListe)
+             .environment(\.managedObjectContext, viewContext)
+             ) {
+             Image(systemName: "play")
+             }
+             .disabled(!contientCartesAReviser)
+             NavigationLink(destination: ModifierUneListeView(liste: selectedListe)
+             .environment(\.managedObjectContext, viewContext)
+             ) {
+             Image(systemName: "gear")
+             }
+             
+             Button(action: {
+             supprimerUneListe(liste: selectedListe)
+             }) {
+             Image(systemName: "trash")
+             }
+             
+             
+             })
+             .navigationTitle(selectedListe.nom ?? "")
+             */
+            
         }
-        .navigationBarItems(trailing: HStack {
-            
-            NavigationLink(destination: CreerUneCarteView(liste: selectedListe)
-                .environment(\.managedObjectContext, viewContext)
-            ) {
-                Image(systemName: "plus")
-            }
-            NavigationLink(destination: SentrainerView(liste: selectedListe)
-                .environment(\.managedObjectContext, viewContext)
-            ) {
-                Image(systemName: "play")
-            }
-            .disabled(!contientCartesAReviser)
-            NavigationLink(destination: ModifierUneListeView(liste: selectedListe)
-                .environment(\.managedObjectContext, viewContext)
-            ) {
-                Image(systemName: "gear")
-            }
-            
-            Button(action: {
-                supprimerUneListe(liste: selectedListe)
-            }) {
-                Image(systemName: "trash")
-            }
-            
-            
-        })
-        .navigationTitle(selectedListe.nom ?? "")
-        
+
     }
+
     
     func supprimerUneListe(liste: Liste) {
         let alert = UIAlertController(title: "Confirmation", message: "Êtes-vous sûr de vouloir supprimer cette liste ?", preferredStyle: .alert)

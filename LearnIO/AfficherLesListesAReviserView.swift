@@ -35,6 +35,7 @@ struct AfficherLesListesAReviserView: View {
                         
                         NavigationLink(destination: AfficherUneListeView(selectedListe : liste)
                             .environment(\.managedObjectContext, viewContext)
+                            .navigationBarBackButtonHidden(true)
                         ) {
                             VStack {
                                 RoundedRectangle(cornerRadius: 10)

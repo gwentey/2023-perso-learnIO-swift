@@ -40,6 +40,7 @@ struct AfficherLesListesApprisesView: View {
                     }), id: \.self) { liste in
                         NavigationLink(destination: AfficherUneListeView(selectedListe: liste)
                             .environment(\.managedObjectContext, viewContext)
+                            .navigationBarBackButtonHidden(true)
                         ) {
                             VStack {
                                 RoundedRectangle(cornerRadius: 10)
